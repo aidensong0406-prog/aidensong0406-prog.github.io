@@ -1,137 +1,237 @@
+import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
-import { getPosts } from "@/utils/utils";
+import { createPageMetadata } from "@/utils/metadata";
+import { projects, type Project } from "@/resources/portfolio";
+import { ProjectArtwork } from "@/components/ProjectArtwork";
+import { ProjectGallery } from "@/components/ProjectGallery";
 import {
-  Meta,
-  Schema,
-  AvatarGroup,
-  Button,
-  Column,
-  Flex,
-  Heading,
-  Media,
-  Text,
-  SmartLink,
-  Row,
-  Avatar,
-  Line,
-} from "@once-ui-system/core";
-import { baseURL, about, person, work } from "@/resources";
-import { formatDate } from "@/utils/formatDate";
-import { ScrollToHash, CustomMDX } from "@/components";
-import { Metadata } from "next";
-import { Projects } from "@/components/work/Projects";
+  FiBookOpen,
+  FiFileText,
+  FiMic,
+  FiBarChart2,
+  FiDroplet,
+  FiCoffee,
+  FiHelpCircle,
+  FiMusic,
+  FiHeart,
+  FiUsers,
+  FiGitBranch,
+  FiCode,
+  FiMessageCircle,
+} from "react-icons/fi";
+import styles from "./project.module.css";
+import { ActionArrow } from "@/components/ActionArrow";
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "work", "projects"]);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+// These highlights condense the existing résumé-derived project descriptions.
+// Use qualitative outputs where the résumé provides no numerical results.
+const highlights: Record<string, { value: string; label: string }[]> = {
+  "density-driven-flows": [
+    { value: "Global Top 10", label: "S.T. Yau Science Award" },
+    { value: "Top 9", label: "Sichuan Science Fair" },
+    { value: "Top 33 / 1,300+", label: "National Top Talent Program" },
+  ],
+  shishijie: [
+    { value: "200+ stones", label: "Family collection" },
+    { value: "Interactive 3D", label: "Rotatable museum exhibits" },
+    { value: "Contribution design", label: "Device-local draft workflow" },
+  ],
+  "glacier-week": [
+    { value: "84+ classes", label: "Across three school sites" },
+    { value: "10,000+ viewers", label: "Frozen Voices educational videos" },
+    { value: "Global 1st", label: "Sea Beyond Glaciers category, €5,000 sponsorship" },
+  ],
+  "computational-oceanography": [
+    { value: "MeshGraphNets", label: "Ocean forecasting models" },
+    { value: "GPU training", label: "Controlled experiments" },
+    { value: "Research manuscript", label: "Figures and scientific writing" },
+  ],
+  "yangtze-expedition": [
+    { value: "50+ interviews", label: "Residents, workers, and stakeholders" },
+    { value: "Water sampling", label: "Collection and analysis" },
+    { value: "Yangtze River", label: "Headwaters toward downstream regions" },
+  ],
+  alphadeer: [
+    { value: "30+ members", label: "Student-led education team" },
+    { value: "80-page translation", label: "UNESCO student AI framework" },
+    { value: "10+ seminars", label: "Speakers secured by the team" },
+  ],
+  "crescent-philharmonic": [
+    { value: "100+ members", label: "The school's first full orchestra" },
+    { value: "100+ hours", label: "Community music service" },
+    { value: "500+ audience", label: "Orchestra concert" },
+  ],
+  "mathematical-modeling-club": [
+    { value: "100+ members", label: "Student modeling community" },
+    { value: "Weekly training", label: "Models, starter code, and strategy" },
+    { value: "Competition honors", label: "Outstanding, Finalist, and Meritorious" },
+  ],
+};
+
+const deliverableIcons = {
+  translation: FiBookOpen,
+  research: FiFileText,
+  seminar: FiMic,
+  infographic: FiBarChart2,
+  ice: FiDroplet,
+  food: FiCoffee,
+  quiz: FiHelpCircle,
+  orchestra: FiMusic,
+  service: FiHeart,
+  concert: FiUsers,
+  model: FiGitBranch,
+  code: FiCode,
+  mentor: FiMessageCircle,
+};
+
+function ProjectDeliverables({
+  deliverables,
+}: { deliverables: NonNullable<Project["deliverables"]> }) {
+  const List = deliverables.layout === "sequence" ? "ol" : "ul";
+  return (
+    <section className={styles.deliverablePanel} aria-labelledby="deliverables-title">
+      <h2 id="deliverables-title">{deliverables.title}</h2>
+      <List className={`${styles.deliverables} ${styles[deliverables.layout]}`}>
+        {deliverables.items.map((item, index) => {
+          const Icon = deliverableIcons[item.icon];
+          return (
+            <li key={item.title}>
+              <span className={styles.deliverableIcon} aria-hidden="true">
+                {deliverables.layout === "sequence" ? index + 1 : <Icon />}
+              </span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
+            </li>
+          );
+        })}
+      </List>
+    </section>
+  );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string | string[] }>;
-}): Promise<Metadata> {
-  const routeParams = await params;
-  const slugPath = Array.isArray(routeParams.slug)
-    ? routeParams.slug.join("/")
-    : routeParams.slug || "";
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
 
-  const posts = getPosts(["src", "app", "work", "projects"]);
-  let post = posts.find((post) => post.slug === slugPath);
-
-  if (!post) return {};
-
-  return Meta.generate({
-    title: post.metadata.title,
-    description: post.metadata.summary,
-    baseURL: baseURL,
-    image: post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
-    path: `${work.path}/${post.slug}`,
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find((project) => project.slug === slug);
+  if (!project) return {};
+  return createPageMetadata({
+    title: `${project.title} — Aiden Song`,
+    description: project.summary,
+    path: `/work/${slug}`,
   });
 }
 
-export default async function Project({
-  params,
-}: {
-  params: Promise<{ slug: string | string[] }>;
-}) {
-  const routeParams = await params;
-  const slugPath = Array.isArray(routeParams.slug)
-    ? routeParams.slug.join("/")
-    : routeParams.slug || "";
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find((project) => project.slug === slug);
+  if (!project) notFound();
 
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
-
-  if (!post) {
-    notFound();
-  }
-
-  const avatars =
-    post.metadata.team?.map((person) => ({
-      src: person.avatar,
-    })) || [];
+  const related = projects
+    .filter((other) => other.slug !== slug)
+    .sort(
+      (a, b) => Number(b.category === project.category) - Number(a.category === project.category),
+    )
+    .slice(0, 2);
 
   return (
-    <Column as="section" maxWidth="m" horizontal="center" gap="l">
-      <Schema
-        as="blogPosting"
-        baseURL={baseURL}
-        path={`${work.path}/${post.slug}`}
-        title={post.metadata.title}
-        description={post.metadata.summary}
-        datePublished={post.metadata.publishedAt}
-        dateModified={post.metadata.publishedAt}
-        image={
-          post.metadata.image || `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`
-        }
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
-      <Column maxWidth="s" gap="16" horizontal="center" align="center">
-        <SmartLink href="/work">
-          <Text variant="label-strong-m">Projects</Text>
-        </SmartLink>
-        <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
-          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
-        </Text>
-        <Heading variant="display-strong-m">{post.metadata.title}</Heading>
-      </Column>
-      <Row marginBottom="32" horizontal="center">
-        <Row gap="16" vertical="center">
-          {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="s" />}
-          <Text variant="label-default-m" onBackground="brand-weak">
-            {post.metadata.team?.map((member, idx) => (
-              <span key={idx}>
-                {idx > 0 && (
-                  <Text as="span" onBackground="neutral-weak">
-                    ,{" "}
-                  </Text>
-                )}
-                <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
-              </span>
-            ))}
-          </Text>
-        </Row>
-      </Row>
-      {post.metadata.images.length > 0 && (
-        <Media priority aspectRatio="16 / 9" radius="m" alt="image" src={post.metadata.images[0]} />
+    <main id="main-content" className={`portfolio-shell ${styles.page}`}>
+      <Link className={`site-button compact ${styles.backLink}`} href="/work">
+        <ActionArrow direction="left" />
+        All experiences
+      </Link>
+
+      <header
+        className={`${styles.hero} ${project.gallery || (!project.cover && !project.visual && !project.deliverables) ? styles.galleryHero : ""}`}
+      >
+        <div className={styles.heroCopy}>
+          <p className={styles.category}>{project.category}</p>
+          {project.status && <p className={styles.status}>{project.status}</p>}
+          <h1>{project.title}</h1>
+          <p className={styles.summary}>{project.summary}</p>
+          <dl className={styles.metadata}>
+            <div>
+              <dt>Role</dt>
+              <dd>{project.role}</dd>
+            </div>
+            <div>
+              <dt>Period</dt>
+              <dd>{project.period}</dd>
+            </div>
+          </dl>
+        </div>
+        {!project.gallery && project.cover ? (
+          <figure className={styles.visual}>
+            <div className={styles.heroArtwork}>
+              <ProjectArtwork visual={project.visual} media={project.cover} priority />
+            </div>
+          </figure>
+        ) : !project.gallery && project.deliverables ? (
+          <ProjectDeliverables deliverables={project.deliverables} />
+        ) : !project.gallery && project.visual ? (
+          <figure className={styles.visual}>
+            <div className={styles.heroArtwork}>
+              <ProjectArtwork visual={project.visual} />
+            </div>
+          </figure>
+        ) : null}
+      </header>
+
+      {project.gallery && <ProjectGallery images={project.gallery} title={project.title} />}
+
+      {!project.gallery && !project.status && !project.deliverables && (
+        <section className={styles.highlights} aria-label="Project highlights">
+          {highlights[slug].map((item) => (
+            <div key={item.label} className={styles.highlight}>
+              <p className={styles.highlightValue}>{item.value}</p>
+              <p>{item.label}</p>
+            </div>
+          ))}
+        </section>
       )}
-      <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
-        <CustomMDX source={post.content} />
-      </Column>
-      <Column fillWidth gap="40" horizontal="center" marginTop="40">
-        <Line maxWidth="40" />
-        <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
-          Related projects
-        </Heading>
-        <Projects exclude={[post.slug]} range={[2]} />
-      </Column>
-      <ScrollToHash />
-    </Column>
+
+      <article className={styles.story} aria-label={`${project.title} details`}>
+        {project.sections.map((section, index) => (
+          <section
+            className={styles.storySection}
+            key={section.title}
+            id={`section-${index + 1}`}
+            aria-labelledby={`heading-${index + 1}`}
+          >
+            <h2 id={`heading-${index + 1}`}>{section.title}</h2>
+            <p>{section.text}</p>
+          </section>
+        ))}
+      </article>
+
+      <section className={styles.related} aria-labelledby="related-title">
+        <div className={styles.relatedHeading}>
+          <h2 id="related-title">Related Experiences</h2>
+          <Link className={`site-button compact ${styles.allLink}`} href="/work">
+            View all
+            <ActionArrow />
+          </Link>
+        </div>
+        <div className={styles.relatedGrid}>
+          {related.map((other) => (
+            <Link className={styles.relatedLink} key={other.slug} href={`/work/${other.slug}`}>
+              {(other.cover || other.visual) && (
+                <div className={styles.relatedArtwork}>
+                  <ProjectArtwork visual={other.visual} media={other.cover} />
+                </div>
+              )}
+              <div className={styles.relatedCopy}>
+                <h3>{other.title}</h3>
+                <p>{other.category}</p>
+              </div>
+              <ActionArrow />
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

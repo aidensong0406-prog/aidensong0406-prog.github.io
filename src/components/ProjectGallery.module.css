@@ -1,0 +1,120 @@
+.gallery {
+  min-width: 0;
+  margin-top: 30px;
+}
+.figure {
+  margin: 0;
+}
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0c1217;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 16px;
+}
+.imageFrame img {
+  object-fit: contain;
+}
+.scientificFigure {
+  background: #fff;
+}
+.caption {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 36px;
+  padding: 22px 0;
+}
+.caption > div {
+  max-width: 75ch;
+  min-width: 0;
+}
+.caption p {
+  margin-top: 8px !important;
+}
+.caption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+.caption a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.choices {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+.choices button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px;
+  min-height: 78px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 12px;
+  background: var(--surface-background);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.choices button[aria-pressed="true"] {
+  border-color: currentColor;
+  background: var(--neutral-alpha-weak);
+}
+.choices button:hover {
+  background: var(--neutral-alpha-weak);
+}
+.thumbnail {
+  position: relative;
+  width: 64px;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.thumbnail img {
+  object-fit: contain;
+}
+@media (max-width: 900px) {
+  .choices button {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .thumbnail {
+    width: 100%;
+  }
+  .caption {
+    gap: 24px;
+  }
+}
+@media (max-width: 700px) {
+  .gallery {
+    margin-top: 24px;
+  }
+  .imageFrame {
+    border-radius: 12px;
+  }
+  .caption {
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 0;
+  }
+  .choices {
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .choices button {
+    padding: 8px;
+  }
+}

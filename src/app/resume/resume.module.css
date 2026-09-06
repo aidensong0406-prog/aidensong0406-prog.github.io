@@ -1,0 +1,265 @@
+.resume {
+  max-width: 960px;
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 0;
+}
+.toolbar button {
+  cursor: pointer;
+  color: var(--portfolio-ink);
+  background: var(--neutral-alpha-weak);
+}
+.sheet {
+  padding: 44px 48px;
+  margin-bottom: 28px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 16px;
+  background: var(--surface-background);
+}
+.identity {
+  padding-bottom: 12px;
+}
+.identity > p {
+  margin-top: 16px;
+}
+.identity address {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin-top: 8px;
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+.identity a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.section {
+  margin-top: 26px;
+}
+.section > h2 {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+.entry + .entry {
+  margin-top: 20px;
+}
+.entryHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+}
+.entryHeading > span {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.entryHeading a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.entry .role {
+  margin: 3px 0 6px;
+}
+.educationEntry + .educationEntry {
+  margin-top: 16px;
+}
+.scores {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  margin-top: 14px !important;
+}
+.scores > span {
+  margin: 0 16px 0 0;
+}
+.honors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.honors li {
+  display: flex;
+  flex-direction: column;
+}
+.honors strong {
+  font-weight: 600;
+}
+.pageNumber,
+.runningHeader,
+.printTitle {
+  display: none;
+}
+.sheet:nth-of-type(3) .section:first-of-type {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .sheet {
+    padding: 28px;
+  }
+  .entryHeading {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .honors {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 450px) {
+  .sheet {
+    padding: 22px;
+  }
+  .toolbar {
+    gap: 12px;
+  }
+  .toolbar button {
+    gap: 10px;
+    padding-inline: 12px;
+  }
+}
+
+@page resume {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+@media print {
+  :global(html):has(.resume),
+  :global(body):has(.resume) {
+    display: block !important;
+    width: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  :global(body):has(.resume) > :not(:has(.resume)) {
+    display: none !important;
+  }
+  :global(body):has(.resume) :has(.resume) {
+    display: block !important;
+    width: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .resume {
+    page: resume;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    color: #111;
+    font: 400 10pt / 1.35 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  .resume * {
+    color: #111 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  .toolbar {
+    display: none !important;
+  }
+  .screenLink {
+    display: none;
+  }
+  .printTitle {
+    display: inline;
+  }
+  .sheet {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    break-after: page;
+  }
+  .sheet:last-child {
+    break-after: auto;
+  }
+  .identity {
+    padding-bottom: 1mm;
+  }
+  .resume h1 {
+    font-size: 25pt;
+    line-height: 1.12;
+  }
+  .identity > p {
+    margin-top: 3mm;
+  }
+  .identity address {
+    margin-top: 1mm;
+  }
+  .section {
+    margin-top: 5mm;
+  }
+  .section > h2 {
+    font-size: 12pt;
+    line-height: 1.25;
+    margin-bottom: 2.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: .3mm solid #bbb;
+    break-after: avoid;
+  }
+  .resume h3 {
+    font-size: 10pt;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  .entryHeading {
+    flex-direction: row;
+    gap: 2mm 5mm;
+  }
+  .entry,
+  .educationEntry,
+  .honors li {
+    break-inside: avoid;
+  }
+  .entry + .entry {
+    margin-top: 3mm;
+  }
+  .entry .role {
+    margin: .5mm 0 1mm;
+  }
+  .educationEntry + .educationEntry {
+    margin-top: 2.5mm;
+  }
+  .scores {
+    margin-top: 3mm !important;
+  }
+  .honors {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 7mm;
+    row-gap: 2mm;
+    font-size: 9pt;
+    line-height: 1.3;
+  }
+  .runningHeader {
+    display: block;
+    margin-bottom: 3mm !important;
+    font-size: 10pt;
+    font-weight: 600;
+  }
+  .pageNumber {
+    display: block;
+    margin-top: 5mm !important;
+    padding-top: 2mm;
+    border-top: .2mm solid #bbb;
+    font-size: 8pt;
+  }
+  .resume a {
+    text-decoration: none;
+  }
+}

@@ -1,37 +1,24 @@
-import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
-import { baseURL, about, person, work } from "@/resources";
-import { Projects } from "@/components/work/Projects";
-
+import { createPageMetadata } from "@/utils/metadata";
+import { work } from "@/resources";
+import { PortfolioGrid } from "@/components/PortfolioGrid";
 export async function generateMetadata() {
-  return Meta.generate({
+  return createPageMetadata({
     title: work.title,
     description: work.description,
-    baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(work.title)}`,
     path: work.path,
   });
 }
-
 export default function Work() {
   return (
-    <Column maxWidth="m" paddingTop="24">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        path={work.path}
-        title={work.title}
-        description={work.description}
-        image={`/api/og/generate?title=${encodeURIComponent(work.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
-      <Heading marginBottom="l" variant="heading-strong-xl" align="center">
-        {work.title}
-      </Heading>
-      <Projects />
-    </Column>
+    <main id="main-content" className="portfolio-shell subpage">
+      <header className="page-heading">
+        <h1>Experiences</h1>
+        <p>
+          Research, organizations, and independent projects. Select an experience to view its
+          objectives, responsibilities, and outcomes.
+        </p>
+      </header>
+      <PortfolioGrid />
+    </main>
   );
 }

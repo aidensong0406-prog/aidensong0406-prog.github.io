@@ -1,0 +1,81 @@
+/* Keep navigation stable while the content beneath it changes. */
+.site-header {
+  view-transition-name: site-navigation;
+}
+.site-footer {
+  view-transition-name: site-footer;
+}
+.site-navigation > a {
+  transition: background-color 180ms ease;
+}
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(*) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+}
+::view-transition-old(root) {
+  animation: screen-out 180ms ease-in both;
+}
+::view-transition-new(root) {
+  animation: screen-in 320ms cubic-bezier(.22, 1, .36, 1) both;
+}
+::view-transition-old(site-navigation),
+::view-transition-new(site-navigation),
+::view-transition-old(site-footer),
+::view-transition-new(site-footer) {
+  animation: none;
+}
+
+/* Tabs get their own snapshot, including a smooth change of panel dimensions. */
+:root[data-transition-kind="profile"] .profile-panel {
+  view-transition-name: profile-panel;
+}
+:root[data-transition-kind="profile"]::view-transition-old(root),
+:root[data-transition-kind="profile"]::view-transition-new(root) {
+  animation: none;
+}
+::view-transition-old(profile-panel) {
+  animation: panel-out 160ms ease-in both;
+}
+::view-transition-new(profile-panel) {
+  animation: panel-in 280ms cubic-bezier(.22, 1, .36, 1) both;
+}
+@keyframes screen-out {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes panel-out {
+  to { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-transition-entry {
+  width: 100%;
+  min-width: 0;
+}
+@supports not (view-transition-name: profile-panel) {
+  .page-transition-entry,
+  .profile-panel {
+    animation: panel-in 280ms ease-out both;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .page-transition-entry,
+  .profile-panel,
+  .site-navigation > a {
+    animation: none;
+    transition: none;
+  }
+}

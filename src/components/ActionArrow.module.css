@@ -1,0 +1,62 @@
+.arrow {
+  --arrow-x: 3px;
+  --arrow-y: 0px;
+  --arrow-rotation: 0deg;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--action-arrow-size, 24px);
+  height: var(--action-arrow-size, 24px);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+.right {
+  --arrow-rotation: 0deg;
+}
+.left {
+  --arrow-x: -3px;
+  --arrow-rotation: 180deg;
+}
+.down {
+  --arrow-x: 0px;
+  --arrow-y: 3px;
+  --arrow-rotation: 90deg;
+}
+.external {
+  --arrow-x: 2px;
+  --arrow-y: -2px;
+  --arrow-rotation: -45deg;
+}
+.motion {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: translate(0, 0) scale(1);
+  transition: transform 220ms cubic-bezier(.22, 1, .36, 1);
+}
+.arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--arrow-rotation));
+}
+:global(a:is(:hover, :focus-visible)) .motion,
+:global(button:is(:hover, :focus-visible)) .motion,
+:global(summary:is(:hover, :focus-visible)) .motion {
+  transform: translate(var(--arrow-x), var(--arrow-y));
+}
+:global(a:active) .motion,
+:global(button:active) .motion,
+:global(summary:active) .motion {
+  transform: translate(var(--arrow-x), var(--arrow-y)) scale(.86);
+  transition-duration: 80ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion,
+  :global(a:is(:hover, :focus-visible, :active)) .motion,
+  :global(button:is(:hover, :focus-visible, :active)) .motion,
+  :global(summary:is(:hover, :focus-visible, :active)) .motion {
+    transform: none;
+    transition: none;
+  }
+}

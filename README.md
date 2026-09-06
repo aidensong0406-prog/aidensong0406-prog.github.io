@@ -1,93 +1,48 @@
-# Magic Portfolio
+# Aiden Song — personal website
 
-Magic Portfolio is a simple, clean, beginner-friendly portfolio template. It supports an MDX-based content system for projects and blog posts, an about / CV page and a gallery.
+A Next.js and React portfolio adapted from [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio), with Once UI styling and custom responsive layouts.
 
-View the demo [here](https://demo.magic-portfolio.com).
+- Home introduces selected experiences and research.
+- About uses accessible tabs for education, research, leadership, honors, and interests.
+- Experiences has category filters and eight individual project pages.
+- Honors has a dedicated page with research awards and year-filtered academic competitions.
+- Résumé opens the original supplied PDF directly.
 
-![Magic Portfolio](public/images/og/home.jpg)
+## Run locally
 
-Launch your portfolio on [Aveiro](https://www.aveiro.app/marketplace/spotlight), our managed publishing platform. Update case studies, blog posts and content through MCP from your favorite AI tools.
+Use Node.js 22. On this Mac, add the installed runtime to your shell if needed:
 
-## Getting started
-
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
-
-**2. Install dependencies**
-```
-npm install
+```sh
+export PATH="$HOME/.local/share/node-v22.23.2-darwin-arm64/bin:$PATH"
+npm ci
+npm run dev -- --hostname 127.0.0.1
 ```
 
-**3. Run dev server**
-```
-npm run dev
-```
+Open http://127.0.0.1:3000. For an optimized preview:
 
-**4. Edit config**
-```
-src/resources/once-ui.config.js
+```sh
+npm run build
+npm run start
 ```
 
-**5. Edit content**
-```
-src/resources/content.js
-```
+## Editing and checks
 
-**6. Create blog posts / projects**
-```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
-```
+Personal details are in `src/resources/content.tsx`. Projects, gallery captions, education, and honors are in `src/resources/portfolio.ts`. Shared styles are in `src/resources/custom.css`; page-specific layouts have CSS modules beside their components.
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes. About sections and experience filters support direct links and browser history. The original résumé is served unchanged from `public/AidenSongResume0831.pdf`; all résumé links open it directly, and `/resume` redirects to it.
 
-## Documentation
+Page navigation and About tabs use view transitions with brief fades and movement. Navigation stays in place, and About panels animate between their dimensions. Reduced-motion preferences disable the animations; browsers without native view transitions retain standard navigation and a CSS entrance fallback.
 
-Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfolio/quick-start)
+Project media includes the supplied Alphadeer logo, lock-exchange tank photograph, Glacier Week materials, and orchestra photograph. Alphadeer’s exhibition is in preparation; Glacier Week is a separate completed project. Shishijie screenshots show a browser prototype containing synthetic study specimens. The lock-exchange comparison comes from the PINN-LOCK paper’s `suntans_t300.png`. Captions retain their reference/model distinctions and units. Storm-surge images and decorative artwork are omitted from its cards and project page. The homepage opens with a personal introduction and an initials-based portrait placeholder until a portrait is supplied. Remaining SVG artwork is decorative.
 
-## Features
+## GitHub Pages
 
-### Once UI
-- All tokens, components & features of [Once UI](https://once-ui.com)
+The site exports to `out/` using Next.js static export. React interactions, transitions, tabs, filters, and galleries run in the browser. Sharing artwork is generated as `/og.png` during the build. No application server is required.
 
-### SEO
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
+The `.github/workflows/deploy.yml` workflow builds and publishes each push to `main`. It is configured for the account website repository `aidensong0406-prog.github.io`, which serves the site at the domain root. In repository Settings → Pages, select **GitHub Actions** as the source.
 
-### Design
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
+The workflow sets `NEXT_PUBLIC_SITE_URL` from GitHub Pages so canonical URLs, sharing images, and the sitemap use the public origin. For a local production build, set it explicitly to `https://aidensong0406-prog.github.io`; see `.env.example`. Local builds without this setting intentionally disallow search indexing. No authentication, analytics, remote URL-fetching APIs, or contact-form service are configured.
 
-### Content
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
+## Attribution and license
 
-### Localization
-- A localized, earlier version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
-
-## Creators
-
-Lorant One: [Threads](https://www.threads.net/@lorant.one) / [LinkedIn](https://www.linkedin.com/in/lorant-one/)
-
-## Get involved
-
-- Join the Design Engineers Club on [Discord](https://discord.com/invite/5EyAQ4eNdS) and share your project with us!
-- Deployed your docs? Share it on the [Once UI Hub](https://once-ui.com/hub) too! We feature our favorite apps on our landing page.
-
-## License
-
-Distributed under the CC BY-NC 4.0 License.
-- Attribution is required.
-- Commercial usage is not allowed.
-- You can extend the license to [Dopler CC](https://dopler.app/license) by purchasing a [Once UI Pro](https://once-ui.com/pricing) license.
-
-See `LICENSE.txt` for more information.
-
-## Deploy with Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+Adapted from Magic Portfolio by [Once UI](https://once-ui.com/products/magic-portfolio). The original template is distributed under CC BY-NC 4.0; attribution is retained in the site footer. See `LICENSE.txt` for its terms.
