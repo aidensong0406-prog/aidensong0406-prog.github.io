@@ -33,6 +33,8 @@ Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes
 
 Page navigation and About tabs use view transitions with brief fades and movement. Navigation stays in place, and About panels animate between their dimensions. Reduced-motion preferences disable the animations; browsers without native view transitions retain standard navigation and a CSS entrance fallback.
 
+Honors pairs the lock-exchange photograph with research awards and uses compact competition cards with expandable full results. Education uses institution marks and expandable coursework. The marks are unmodified official assets from USACO, COMAP, IMMC, BPhO, AAPT, the John Locke Institute, MAA, SHSID, Carnegie Mellon, and Stanford, displayed in a consistent monochrome treatment.
+
 Project media includes the supplied Alphadeer logo, lock-exchange tank photograph, Glacier Week materials, and orchestra photograph. Alphadeer’s exhibition is in preparation; Glacier Week is a separate completed project. Shishijie screenshots show a browser prototype containing synthetic study specimens. The lock-exchange comparison comes from the PINN-LOCK paper’s `suntans_t300.png`. Captions retain their reference/model distinctions and units. Storm-surge images and decorative artwork are omitted from its cards and project page. The homepage opens with a personal introduction and an initials-based portrait placeholder until a portrait is supplied. Remaining SVG artwork is decorative.
 
 ## GitHub Pages

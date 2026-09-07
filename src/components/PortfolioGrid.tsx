@@ -19,19 +19,12 @@ export function PortfolioCard({
     >
       {hasArtwork && <ProjectArtwork visual={project.visual} media={project.cover} />}
       <div className="portfolio-card-copy">
-        {!hasArtwork && <p>{project.category}</p>}
         <div className="card-title action-heading">
           <Heading>{project.title}</Heading>
           <ActionArrow />
         </div>
         <p>{project.summary}</p>
         {project.status && <p className="project-status">{project.status}</p>}
-        {!hasArtwork && (
-          <div className="portfolio-card-meta">
-            <p>{project.role}</p>
-            <p>{project.period}</p>
-          </div>
-        )}
       </div>
     </Link>
   );

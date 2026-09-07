@@ -21,8 +21,7 @@
   font-variant-numeric: tabular-nums;
 }
 .feature,
-.research,
-.academic {
+.research {
   border: 1px solid var(--portfolio-line);
   border-radius: 16px;
   background: var(--surface-background);
@@ -95,33 +94,57 @@
   text-decoration: underline;
   text-underline-offset: 5px;
 }
-.research,
-.academic {
+.research {
   margin-top: 24px;
   padding: 24px 28px;
 }
+.academic {
+  margin-top: 32px;
+}
 .sectionHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
   margin-bottom: 20px;
 }
+.researchBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+}
+.researchProject {
+  min-width: 0;
+}
+.researchImage {
+  position: relative;
+  aspect-ratio: 2.37;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.researchImage > div {
+  height: 100%;
+}
 .researchLink {
-  margin-top: 2px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+.researchProject:is(:hover, :focus-visible) .researchLink {
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 .researchAwards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--portfolio-line);
-  padding-top: 20px;
+  gap: 20px;
 }
 .researchAwards article {
   display: grid;
-  align-content: start;
-  gap: 12px;
-  padding-right: 24px;
+  gap: 5px;
 }
 .researchAwards article + article {
-  border-left: 1px solid var(--portfolio-line);
-  padding-left: 28px;
-  padding-right: 0;
+  border-top: 1px solid var(--portfolio-line);
+  padding-top: 20px;
 }
 .honors :is(h3, h4) {
   margin: 0;
@@ -169,23 +192,97 @@
 }
 .records {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  column-gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 12px;
+  align-items: stretch;
 }
 .record {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  min-height: 128px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 12px;
+  background: var(--surface-background);
+}
+.competitionMark {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
   display: grid;
-  align-content: start;
-  gap: 6px;
-  padding: 18px 0;
+  place-items: center;
+  padding: 8px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+}
+.competitionMark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+}
+.treeMark img {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 360px;
+  height: 52px;
+  max-width: none;
+  transform: translateY(-50%);
+}
+.recordCopy {
+  min-width: 0;
+  flex: 1;
+}
+.record .awardHeading {
+  display: flex;
+}
+.record .awardHeading > span {
+  margin-top: 0;
+}
+.resultDetails,
+.honors .simpleResult {
+  margin-top: 10px;
+}
+.resultDetails summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+  width: fit-content;
+  --action-arrow-size: 16px;
+}
+.resultDetails summary::-webkit-details-marker {
+  display: none;
+}
+.resultDetails summary:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.resultDetails[open] summary > span[aria-hidden="true"] {
+  transform: rotate(180deg);
+}
+.resultDetails > p {
+  padding-top: 10px;
+  margin-top: 8px;
   border-top: 1px solid var(--portfolio-line);
+}
+.honors .simpleResult {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 @media (max-width: 700px) {
   .standalone .heading {
     padding-top: 16px;
   }
   .featureCopy,
-  .research,
-  .academic {
+  .research {
     padding: 22px;
   }
 }
@@ -203,20 +300,31 @@
   .featureActions {
     gap: 4px 16px;
   }
-  .researchAwards {
+  .researchBody {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .researchAwards article {
-    padding-right: 0;
-  }
-  .researchAwards article + article {
-    border-left: 0;
+  .researchAwards {
     border-top: 1px solid var(--portfolio-line);
-    padding: 20px 0 0;
+    padding-top: 20px;
+  }
+  .record {
+    min-height: 0;
+    padding: 18px;
   }
 }
 @media (max-width: 380px) {
+  .record {
+    gap: 12px;
+    padding: 16px;
+  }
+  .competitionMark {
+    width: 56px;
+    height: 56px;
+  }
+  .treeMark img {
+    right: -24px;
+  }
   .filters button {
     padding-inline: 10px;
   }

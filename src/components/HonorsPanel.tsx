@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { getProject, honors } from "@/resources/portfolio";
 import { transitionProfile } from "@/utils/viewTransitions";
@@ -11,8 +12,25 @@ import styles from "./HonorsPanel.module.css";
 const researchAwards = honors.filter((item) => item.project === "density-driven-flows");
 const academicAwards = honors.filter((item) => !item.project);
 const glacierWeek = getProject("glacier-week");
+const flowResearch = getProject("density-driven-flows");
 const seaBeyond = honors.find((item) => item.project === "glacier-week");
 const announcement = glacierWeek.gallery?.find((item) => item.title === "Sea Beyond Recognition");
+
+const competitionMarks: Record<string, string> = {
+  USACO: "usaco.png",
+  HiMCM: "comap-mark.png",
+  IMMC: "immc.png",
+  "British Physics Olympiad": "bpho.ico",
+  "Physics Bowl": "aapt.gif",
+  "John Locke Essay Competition": "john-locke.png",
+  AIME: "maa.png",
+};
+const conciseResults: Record<string, string> = {
+  HiMCM: "Finalist",
+  IMMC: "International finalist",
+  "Physics Bowl": "Gold & Silver",
+  "John Locke Essay Competition": "Shortlisted",
+};
 
 export function HonorsPage() {
   const [year, setYear] = useState("All");
@@ -80,20 +98,25 @@ export function HonorsPanel({
       <section className={styles.research} aria-labelledby="research-awards-title">
         <header className={styles.sectionHeading}>
           <SectionHeading id="research-awards-title">Research Awards</SectionHeading>
-          <Link className={styles.researchLink} href="/work/density-driven-flows">
-            Density-Driven Flow Simulation <ActionArrow />
-          </Link>
+          <span>2025–26</span>
         </header>
-        <div className={styles.researchAwards}>
-          {researchAwards.map((item) => (
-            <article key={item.name}>
-              <div className={styles.awardHeading}>
+        <div className={styles.researchBody}>
+          <Link className={styles.researchProject} href="/work/density-driven-flows">
+            <div className={styles.researchImage}>
+              <ProjectArtwork visual={null} media={flowResearch.cover} sizes="(max-width: 600px) 94vw, 420px" />
+            </div>
+            <span className={styles.researchLink}>
+              Density-Driven Flow Simulation <ActionArrow />
+            </span>
+          </Link>
+          <div className={styles.researchAwards}>
+            {researchAwards.map((item) => (
+              <article key={item.name}>
+                <p className={styles.placement}>{item.result}</p>
                 <AwardHeading>{item.name}</AwardHeading>
-                <span>{item.year}</span>
-              </div>
-              <p className={styles.placement}>{item.result}</p>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -124,11 +147,32 @@ export function HonorsPanel({
         <div className={styles.records} id="academic-award-records">
           {visibleAwards.map((item) => (
             <article key={item.name} className={styles.record}>
-              <div className={styles.awardHeading}>
-                <AwardHeading>{item.name}</AwardHeading>
-                <span>{item.year}</span>
+              <div className={`${styles.competitionMark} ${item.name === "USACO" ? styles.treeMark : ""}`}>
+                <Image
+                  src={`/images/competitions/${competitionMarks[item.name]}`}
+                  alt=""
+                  width={192}
+                  height={192}
+                  sizes="64px"
+                />
               </div>
-              <p>{item.result}</p>
+              <div className={styles.recordCopy}>
+                <div className={styles.awardHeading}>
+                  <AwardHeading>{item.name}</AwardHeading>
+                  <span>{item.year}</span>
+                </div>
+                {conciseResults[item.name] ? (
+                  <details className={styles.resultDetails}>
+                    <summary>
+                      {conciseResults[item.name]} <ActionArrow direction="down" />
+                      <span className="sr-only"> — show full result</span>
+                    </summary>
+                    <p>{item.result}</p>
+                  </details>
+                ) : (
+                  <p className={styles.simpleResult}>{item.result}</p>
+                )}
+              </div>
             </article>
           ))}
         </div>

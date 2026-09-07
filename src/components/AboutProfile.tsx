@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { FiBookOpen, FiCode, FiMapPin, FiMusic, FiUsers } from "react-icons/fi";
 import { ActionArrow } from "./ActionArrow";
@@ -20,6 +21,7 @@ const sections = [
   { key: "interests", label: "Interests", hash: "outside" },
 ] as const;
 type Section = (typeof sections)[number]["key"];
+const educationMarks = ["shsid-footer.png", "cmu.ico", "stanford.png"];
 
 function sectionFromHash(): Section {
   const hash = window.location.hash.slice(1);
@@ -46,12 +48,16 @@ function BadmintonGraphic() {
   );
 }
 
-function ExperienceTile({ slug, compact = false }: { slug: string; compact?: boolean }) {
+function ExperienceTile({
+  slug,
+  compact = false,
+  featured = false,
+}: { slug: string; compact?: boolean; featured?: boolean }) {
   const project = getProject(slug);
   return (
     <Link
       href={`/work/${slug}`}
-      className={`${styles.experienceTile} ${compact ? styles.compactTile : ""} ${!project.cover && !project.visual ? styles.textTile : ""}`}
+      className={`${styles.experienceTile} ${compact ? styles.compactTile : ""} ${featured ? styles.featuredTile : ""} ${!project.cover && !project.visual ? styles.textTile : ""}`}
     >
       {(project.cover || project.visual) && (
         <div className={styles.tileArt}>
@@ -63,8 +69,7 @@ function ExperienceTile({ slug, compact = false }: { slug: string; compact?: boo
           <h3>{project.title}</h3>
           <ActionArrow />
         </div>
-        <p>{project.status ?? project.role}</p>
-        {!project.cover && !project.visual && <p>{project.summary}</p>}
+        <p>{featured ? project.summary : (project.status ?? project.role)}</p>
       </div>
     </Link>
   );
@@ -271,9 +276,17 @@ export function AboutProfile() {
               <div className={styles.educationTimeline}>
                 {education.map((item, index) => (
                   <article key={item.title} className={styles.educationEntry}>
-                    <p className={styles.educationDate}>{item.period}</p>
+                    <div className={`${styles.educationMark} ${index === 0 ? styles.schoolMark : ""}`}>
+                      <Image
+                        src={`/images/education/${educationMarks[index]}`}
+                        alt=""
+                        width={64}
+                        height={64}
+                      />
+                    </div>
                     <div className={styles.educationDetail}>
                       <h3>{item.title}</h3>
+                      <p className={styles.educationDate}>{item.period}</p>
                       {index === 0 ? (
                         <p>{item.subtitle}</p>
                       ) : (
@@ -317,8 +330,8 @@ export function AboutProfile() {
                   <ActionArrow />
                 </Link>
               </div>
-              <div className={styles.experienceGrid}>
-                <ExperienceTile slug="density-driven-flows" />
+              <div className={`${styles.experienceGrid} ${styles.researchGrid}`}>
+                <ExperienceTile slug="density-driven-flows" featured />
                 <ExperienceTile slug="computational-oceanography" />
                 <ExperienceTile slug="yangtze-expedition" />
               </div>
