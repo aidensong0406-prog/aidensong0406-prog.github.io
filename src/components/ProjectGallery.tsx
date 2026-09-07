@@ -18,39 +18,64 @@ export function ProjectGallery({
     <section className={styles.gallery} aria-label={`${title} gallery`}>
       <figure className={styles.figure}>
         <div
-          className={`${styles.imageFrame} ${selected.kind === "figure" ? styles.scientificFigure : ""}`}
-          id={`${galleryId}-image`}
+          className={`${styles.imageFrame} ${selected.kind === "figure" ? styles.scientificFigure : ""} ${selected.kind === "poster" ? styles.posterFrame : ""}`}
+          id={`${galleryId}-media`}
           style={{ aspectRatio: selected.ratio ?? "16 / 10" }}
         >
-          <Image
-            src={selected.src}
-            alt={selected.alt}
-            fill
-            sizes="(max-width: 1150px) 94vw, 1100px"
-            preload={active === 0}
-            fetchPriority={active === 0 ? "high" : undefined}
-          />
+          {selected.video ? (
+            // biome-ignore lint/a11y/useMediaCaption: The supplied Glacier Week film includes burned-in English subtitles.
+            <video
+              key={selected.video}
+              controls
+              playsInline
+              preload="none"
+              poster={selected.src}
+              aria-label={selected.alt}
+            >
+              <source src={selected.video} type="video/mp4" />
+              Your browser does not support embedded video.{" "}
+              <a href={selected.video}>Open the film</a>.
+            </video>
+          ) : (
+            <Image
+              src={selected.src}
+              alt={selected.alt}
+              fill
+              sizes={
+                selected.kind === "poster"
+                  ? "(max-width: 520px) 94vw, 480px"
+                  : "(max-width: 1150px) 94vw, 1100px"
+              }
+              preload={active === 0}
+              fetchPriority={active === 0 ? "high" : undefined}
+            />
+          )}
         </div>
         <figcaption className={styles.caption}>
           <div aria-live="polite" aria-atomic="true">
             <h2>{selected.title}</h2>
             <p>{selected.caption}</p>
           </div>
-          <a className="site-button compact" href={selected.src} target="_blank" rel="noreferrer">
-            Full-size image
+          <a
+            className="site-button compact"
+            href={selected.video ?? selected.src}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {selected.video ? "Open video" : "Full-size image"}
             <ActionArrow direction="external" />
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </figcaption>
       </figure>
       {images.length > 1 && (
-        <fieldset data-js-only className={styles.choices} aria-label="Choose an image">
+        <fieldset data-js-only className={styles.choices} aria-label="Choose media">
           {images.map((item, index) => (
             <button
               key={item.src}
               type="button"
               aria-pressed={index === active}
-              aria-controls={`${galleryId}-image`}
+              aria-controls={`${galleryId}-media`}
               onClick={() => setActive(index)}
             >
               <span className={styles.thumbnail} aria-hidden="true">

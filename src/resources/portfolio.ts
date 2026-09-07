@@ -44,7 +44,8 @@ export type Project = {
     title: string;
     alt: string;
     caption: string;
-    kind?: "photo" | "figure";
+    kind?: "photo" | "figure" | "poster";
+    video?: string;
     ratio?: string;
   }[];
 };
@@ -169,11 +170,29 @@ export const projects: Project[] = [
     },
     gallery: [
       {
+        src: "/images/projects/glacier-week/film-preview.jpg",
+        video: "/videos/glacier-week/frozen-voices.mp4",
+        title: "Glacier Week Film",
+        alt: "The Frozen Voices team presents SHSID Glacier Week in its Sea Beyond 2026 film.",
+        caption:
+          "Our Sea Beyond 2026 film introduces the team, the exhibition, and our climate-education work. 2:59, with English subtitles.",
+        ratio: "960 / 544",
+      },
+      {
         src: "/images/projects/glacier-week/exhibition.jpg",
         title: "Glacier Week Exhibition",
         alt: "Students gather around a melting-ice installation at the school exhibition.",
         caption:
           "Visitors explore the glacier installation during the four-day exhibition, which welcomed more than 84 classes across three school sites.",
+      },
+      {
+        src: "/images/projects/glacier-week/poster.jpg",
+        title: "Exhibition Poster",
+        alt: "SHSID Glacier Week poster connecting glaciers with everyday life and introducing the lecture, exhibition, and educational videos.",
+        caption:
+          "The Glacier Week poster introduces our lecture, exhibition, and videos, connecting glacier loss to the water and cultures we share.",
+        kind: "poster",
+        ratio: "1280 / 1811",
       },
       {
         src: "/images/projects/glacier-week/sea-beyond-award.jpg",
@@ -188,20 +207,6 @@ export const projects: Project[] = [
         alt: "The exhibition's colourful climate quiz asks a multiple-choice question about carbon stored in permafrost.",
         caption:
           "I coded an online trivia game as part of the exhibition's climate-education activities.",
-      },
-      {
-        src: "/images/projects/glacier-week/outreach.png",
-        title: "Public Outreach",
-        alt: "The Frozen Voices social-media profile and a grid of educational videos about glaciers and climate change.",
-        caption:
-          "Frozen Voices extended the exhibition through educational videos on glacier loss and its effects on people and ecosystems.",
-      },
-      {
-        src: "/images/projects/glacier-week/frozen-voices.jpg",
-        title: "Frozen Voices",
-        alt: "The Frozen Voices identity features a glacier photograph inside a circular frame.",
-        caption:
-          "The identity used for the exhibition's accompanying climate-communication project.",
       },
     ],
     summary:

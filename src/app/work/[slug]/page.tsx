@@ -5,6 +5,7 @@ import { projects, type Project } from "@/resources/portfolio";
 import { getProjectSection } from "@/resources/site-sections";
 import { ProjectArtwork } from "@/components/ProjectArtwork";
 import { ProjectGallery } from "@/components/ProjectGallery";
+import { FrozenVoices } from "@/components/FrozenVoices";
 import {
   FiBookOpen,
   FiFileText,
@@ -134,8 +135,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   const related = projects
     .filter(
-      (other) =>
-        other.slug !== slug && getProjectSection(other.slug)?.path === parentSection.path,
+      (other) => other.slug !== slug && getProjectSection(other.slug)?.path === parentSection.path,
     )
     .slice(0, 2);
 
@@ -183,6 +183,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </header>
 
       {project.gallery && <ProjectGallery images={project.gallery} title={project.title} />}
+      {slug === "glacier-week" && <FrozenVoices />}
 
       {!project.gallery && !project.status && !project.deliverables && (
         <section className={styles.highlights} aria-label="Project highlights">

@@ -39,6 +39,8 @@ Honors pairs the lock-exchange photograph with research awards and uses compact 
 
 Project media includes the supplied Alphadeer logo, lock-exchange tank photograph, Glacier Week materials, and orchestra photograph. Alphadeer’s exhibition is in preparation; Glacier Week is a separate completed project. Shishijie screenshots show a browser prototype containing synthetic study specimens. The lock-exchange comparison comes from the PINN-LOCK paper’s `suntans_t300.png`. Captions retain their reference/model distinctions and units. Storm-surge images and decorative artwork are omitted from its cards and project page. The homepage opens with a personal introduction and an initials-based portrait placeholder until a portrait is supplied. Remaining SVG artwork is decorative.
 
+Glacier Week’s gallery includes the supplied film and full exhibition poster. The film is served as H.264/AAC MP4 with its original English subtitles, playback controls, inline playback, and no automatic preload. The Frozen Voices WeChat Channels section provides the exact account name, a copy action, search instructions, and a channel screenshot; no public account URL has been supplied.
+
 ## GitHub Pages
 
 The site exports to `out/` using Next.js static export. React interactions, transitions, tabs, filters, and galleries run in the browser. Sharing artwork is generated as `/og.png` during the build. No application server is required.

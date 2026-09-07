@@ -17,6 +17,17 @@
 .imageFrame img {
   object-fit: contain;
 }
+.imageFrame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.posterFrame {
+  max-width: 480px;
+  margin-inline: auto;
+  background: transparent;
+}
 .scientificFigure {
   background: #fff;
 }
