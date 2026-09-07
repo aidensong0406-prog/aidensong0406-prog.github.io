@@ -131,7 +131,7 @@ export function AboutProfile() {
             </p>
             <p>
               <FiBookOpen aria-hidden="true" />
-              Class of 2028
+              Class of 2027
             </p>
           </div>
           <div className={styles.identityActions}>

@@ -454,7 +454,7 @@ export const education = [
   {
     title: "Shanghai High School International Division",
     subtitle: "Secondary education; scholarship recipient, top 7%",
-    period: "2022 — 2028",
+    period: "2022 — 2027",
   },
   {
     title: "Carnegie Mellon University",
