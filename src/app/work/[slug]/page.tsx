@@ -2,6 +2,7 @@ import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 import { createPageMetadata } from "@/utils/metadata";
 import { projects, type Project } from "@/resources/portfolio";
+import { getProjectSection } from "@/resources/site-sections";
 import { ProjectArtwork } from "@/components/ProjectArtwork";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import {
@@ -57,7 +58,7 @@ const highlights: Record<string, { value: string; label: string }[]> = {
   ],
   "crescent-philharmonic": [
     { value: "100+ members", label: "The school's first full orchestra" },
-    { value: "100+ hours", label: "Community music service" },
+    { value: "100+ hours", label: "Collective service hours" },
     { value: "500+ audience", label: "Orchestra concert" },
   ],
   "mathematical-modeling-club": [
@@ -128,27 +129,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projects.find((project) => project.slug === slug);
-  if (!project) notFound();
+  const parentSection = getProjectSection(slug);
+  if (!project || !parentSection) notFound();
 
   const related = projects
-    .filter((other) => other.slug !== slug)
-    .sort(
-      (a, b) => Number(b.category === project.category) - Number(a.category === project.category),
+    .filter(
+      (other) =>
+        other.slug !== slug && getProjectSection(other.slug)?.path === parentSection.path,
     )
     .slice(0, 2);
 
   return (
     <main id="main-content" className={`portfolio-shell ${styles.page}`}>
-      <Link className={`site-button compact ${styles.backLink}`} href="/work">
+      <Link className={`site-button compact ${styles.backLink}`} href={parentSection.path}>
         <ActionArrow direction="left" />
-        All experiences
+        {parentSection.label}
       </Link>
 
       <header
         className={`${styles.hero} ${project.gallery || (!project.cover && !project.visual && !project.deliverables) ? styles.galleryHero : ""}`}
       >
         <div className={styles.heroCopy}>
-          <p className={styles.category}>{project.category}</p>
+          <p className={styles.category}>{parentSection.label}</p>
           {project.status && <p className={styles.status}>{project.status}</p>}
           <h1>{project.title}</h1>
           <p className={styles.summary}>{project.summary}</p>
@@ -207,31 +209,33 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         ))}
       </article>
 
-      <section className={styles.related} aria-labelledby="related-title">
-        <div className={styles.relatedHeading}>
-          <h2 id="related-title">Related Experiences</h2>
-          <Link className={`site-button compact ${styles.allLink}`} href="/work">
-            View all
-            <ActionArrow />
-          </Link>
-        </div>
-        <div className={styles.relatedGrid}>
-          {related.map((other) => (
-            <Link className={styles.relatedLink} key={other.slug} href={`/work/${other.slug}`}>
-              {(other.cover || other.visual) && (
-                <div className={styles.relatedArtwork}>
-                  <ProjectArtwork visual={other.visual} media={other.cover} />
-                </div>
-              )}
-              <div className={styles.relatedCopy}>
-                <h3>{other.title}</h3>
-                <p>{other.category}</p>
-              </div>
+      {related.length > 0 && (
+        <section className={styles.related} aria-labelledby="related-title">
+          <div className={styles.relatedHeading}>
+            <h2 id="related-title">Related Work</h2>
+            <Link className={`site-button compact ${styles.allLink}`} href={parentSection.path}>
+              View all
               <ActionArrow />
             </Link>
-          ))}
-        </div>
-      </section>
+          </div>
+          <div className={styles.relatedGrid}>
+            {related.map((other) => (
+              <Link className={styles.relatedLink} key={other.slug} href={`/work/${other.slug}`}>
+                {(other.cover || other.visual) && (
+                  <div className={styles.relatedArtwork}>
+                    <ProjectArtwork visual={other.visual} media={other.cover} />
+                  </div>
+                )}
+                <div className={styles.relatedCopy}>
+                  <h3>{other.title}</h3>
+                  <p>{parentSection.label}</p>
+                </div>
+                <ActionArrow />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }

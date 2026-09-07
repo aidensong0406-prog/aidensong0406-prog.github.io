@@ -5,8 +5,9 @@ import { projects } from "@/resources/portfolio";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const redirects = new Set(["/work", "/honors", "/resume"]);
   const pages = Object.keys(routes)
-    .filter((route) => routes[route as keyof typeof routes])
+    .filter((route) => routes[route as keyof typeof routes] && !redirects.has(route))
     .map((route) => ({ url: new URL(route, baseURL).href }));
 
   if (routes["/work"]) {

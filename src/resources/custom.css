@@ -137,6 +137,11 @@ body {
   box-shadow: 0 4px 24px #0002;
 }
 .site-navigation > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 44px;
   text-decoration: none;
   color: inherit;
   padding: 8px 17px;
@@ -148,6 +153,7 @@ body {
 }
 .navigation-theme {
   display: flex;
+  flex-shrink: 0;
   border-left: 1px solid var(--portfolio-line);
   margin-left: 4px;
   padding-left: 4px;
@@ -532,7 +538,7 @@ a.text-link:hover,
   }
   .site-navigation > a {
     padding: 8px 6px;
-    font-size: 15px;
+    font-size: 14px;
   }
   .site-footer {
     width: calc(100% - 38px);
@@ -601,7 +607,7 @@ a.text-link:hover,
     gap: 0;
   }
   .site-navigation > a {
-    padding-inline: 5px;
+    padding-inline: 4px;
   }
   .navigation-theme {
     margin-left: 0;

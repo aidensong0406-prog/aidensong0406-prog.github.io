@@ -2,11 +2,13 @@
 
 A Next.js and React portfolio adapted from [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio), with Once UI styling and custom responsive layouts.
 
-- Home introduces selected experiences and research.
-- About uses accessible tabs for education, research, leadership, honors, and interests.
-- Experiences has category filters and eight individual project pages.
-- Honors has a dedicated page with research awards and year-filtered academic competitions.
-- Résumé opens the original supplied PDF directly.
+- Home introduces the site’s Climate, Music, and Projects sections.
+- About uses accessible Overview, Education, Honors, and Interests tabs.
+- Climate brings together coastal research, Yangtze fieldwork, climate education, and public outreach.
+- Music presents Crescent Philharmonic Orchestra’s school and community performances.
+- Projects covers fluid-dynamics research, AI education, Shishijie, and the Mathematical Modeling Club.
+- Individual experience pages retain their `/work/{slug}` URLs and highlight their parent section in navigation.
+- Honors appears in About and relevant experience pages. Résumé opens the original supplied PDF directly.
 
 ## Run locally
 
@@ -27,9 +29,9 @@ npm run start
 
 ## Editing and checks
 
-Personal details are in `src/resources/content.tsx`. Projects, gallery captions, education, and honors are in `src/resources/portfolio.ts`. Shared styles are in `src/resources/custom.css`; page-specific layouts have CSS modules beside their components.
+Personal details are in `src/resources/content.tsx`. Projects, gallery captions, education, and honors are in `src/resources/portfolio.ts`. Section membership is defined in `src/resources/site-sections.ts`. Shared styles are in `src/resources/custom.css`; page-specific layouts have CSS modules beside their components.
 
-Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes. About sections and experience filters support direct links and browser history. The original résumé is served unchanged from `public/AidenSongResume0831.pdf`; all résumé links open it directly, and `/resume` redirects to it.
+Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes. About sections support direct links and browser history. Legacy `/work` links redirect to Projects; `/work#Research` and `/about#research` open Climate’s Research & Fieldwork section. `/honors` opens About’s Honors tab, and `/about#community` and `/about#leadership` open Projects. Redirect-only routes are excluded from the sitemap. The original résumé is served unchanged from `public/AidenSongResume0831.pdf`; all résumé links open it directly, and `/resume` redirects to it.
 
 Page navigation and About tabs use view transitions with brief fades and movement. Navigation stays in place, and About panels animate between their dimensions. Reduced-motion preferences disable the animations; browsers without native view transitions retain standard navigation and a CSS entrance fallback.
 

@@ -4,26 +4,35 @@ import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { transitionProfile } from "@/utils/viewTransitions";
+import { getProjectSection, siteSections } from "@/resources/site-sections";
 
 export const Header = () => {
   const pathname = usePathname()?.replace(/\/$/, "") || "/";
+  const projectSection = pathname.startsWith("/work/")
+    ? getProjectSection(pathname.slice("/work/".length))
+    : undefined;
+  const sectionPath = projectSection?.path.replace(/\/$/, "");
   return (
     <header className="site-header">
       <nav className="site-navigation" aria-label="Main navigation">
         {[
           { href: "/", label: "Home" },
           { href: "/about", label: "About" },
-          { href: "/work", label: "Experiences" },
-          { href: "/honors", label: "Honors" },
+          ...[siteSections.climate, siteSections.music, siteSections.projects].map((section) => ({
+            href: section.path,
+            label: section.label,
+          })),
         ].map((item) => {
-          const selected = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+          const itemPath = item.href.replace(/\/$/, "") || "/";
+          const selected = pathname === itemPath || sectionPath === itemPath;
           return (
             <Link
               key={item.href}
               href={item.href}
               aria-current={selected ? "page" : undefined}
               onClick={(event) => {
-                if (pathname === item.href && window.location.hash) {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                if (pathname === itemPath && window.location.hash) {
                   event.preventDefault();
                   const resetSection = () => {
                     window.history.pushState(null, "", item.href);

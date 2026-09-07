@@ -159,7 +159,6 @@
 }
 .personalFeature:is(:hover, :focus-visible) h3,
 .personalStudy:is(:hover, :focus-visible) h3,
-.experienceTile:is(:hover, :focus-visible) h3,
 .interestCard[href]:is(:hover, :focus-visible) h3 {
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -176,7 +175,6 @@
   height: 20px;
 }
 .overviewGrid,
-.experienceGrid,
 .interestsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -195,7 +193,6 @@
   cursor: pointer;
 }
 .overviewTile:hover,
-.experienceTile:hover,
 .interestCard[href]:hover {
   border-color: var(--portfolio-border-hover);
 }
@@ -367,77 +364,8 @@
   font-size: 16px;
   font-weight: 400;
 }
-.experienceTile {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--portfolio-line);
-  border-radius: 14px;
-  overflow: hidden;
-}
-.tileArt {
-  height: 150px;
-  overflow: hidden;
-}
-.experienceTile.textTile {
-  grid-template-columns: minmax(0, 1fr);
-  justify-content: flex-start;
-}
-.tileArt > div {
-  height: 100%;
-}
-.compactTile .tileArt {
-  height: 120px;
-}
-.tileCopy {
-  padding: 18px;
-}
-.tileTitle {
-  min-width: 0;
-}
-.tileCopy p {
-  margin-top: 8px !important;
-}
-.featuredTile {
-  grid-column: 1 / -1;
-  background: var(--surface-background);
-}
-.featuredTile .tileArt {
-  height: auto;
-  aspect-ratio: 2282 / 962;
-}
-.featuredTile .tileCopy {
-  padding: 22px 24px;
-}
-.researchGrid {
-  grid-template-columns: minmax(0, 1fr);
-}
-.researchGrid .experienceTile:not(.featuredTile) {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  align-items: center;
-}
-.researchGrid .experienceTile.textTile {
-  grid-template-columns: minmax(0, 1fr);
-}
-.researchGrid .experienceTile:not(.featuredTile) .tileArt {
-  height: 100%;
-  min-height: 110px;
-}
-.disclosure {
-  border: 1px solid var(--portfolio-line);
-  border-radius: 14px;
-  margin-top: 18px;
-  padding: 18px 20px;
-}
-.disclosure summary,
 .inlineDetails summary {
   cursor: pointer;
-}
-.disclosure article {
-  padding-top: 20px;
-}
-.disclosure article p {
-  margin-top: 8px !important;
 }
 .interestCard {
   border: 1px solid var(--portfolio-line);
@@ -572,7 +500,7 @@
   }
   .tabs {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     overflow: visible;
     margin-bottom: 20px;
   }
@@ -606,7 +534,6 @@
     display: none;
   }
   .overviewGrid,
-  .experienceGrid,
   .interestsGrid {
     gap: 14px;
   }
@@ -625,34 +552,8 @@
   .honorsSummary > span > span {
     display: none;
   }
-  .experienceGrid,
   .interestsGrid {
     grid-template-columns: 1fr;
-  }
-  .experienceTile {
-    display: grid;
-    grid-template-columns: 105px minmax(0, 1fr);
-    align-items: stretch;
-  }
-  .tileArt,
-  .compactTile .tileArt {
-    height: 100%;
-    min-height: 130px;
-  }
-  .tileCopy {
-    padding: 16px;
-  }
-  .featuredTile {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .featuredTile .tileArt {
-    min-height: 0;
-  }
-  .featuredTile .tileCopy {
-    padding: 18px;
-  }
-  .researchGrid .experienceTile:not(.featuredTile, .textTile) {
-    grid-template-columns: 105px minmax(0, 1fr);
   }
   .educationEntry,
   .scoreBand {
@@ -693,7 +594,6 @@
   .overviewCopy h3 svg {
     flex-shrink: 0;
   }
-
 }
 @media (prefers-reduced-motion: reduce) {
   .panel {

@@ -1,22 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import Image from "next/image";
+import { person } from "@/resources/content";
+import { education, getProject } from "@/resources/portfolio";
+import { transitionProfile } from "@/utils/viewTransitions";
 import { Link } from "next-view-transitions";
-import { FiBookOpen, FiCode, FiMapPin, FiMusic, FiUsers } from "react-icons/fi";
+import Image from "next/image";
+import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import { FiBookOpen, FiCode, FiMapPin, FiMusic } from "react-icons/fi";
+import styles from "./AboutProfile.module.css";
 import { ActionArrow } from "./ActionArrow";
 import { HonorsPanel } from "./HonorsPanel";
-import { getProject, education, community } from "@/resources/portfolio";
-import { person } from "@/resources/content";
-import { transitionProfile } from "@/utils/viewTransitions";
 import { ProjectArtwork } from "./ProjectArtwork";
-import styles from "./AboutProfile.module.css";
 
 const sections = [
   { key: "overview", label: "Overview", hash: "background" },
   { key: "education", label: "Education", hash: "education" },
-  { key: "research", label: "Research", hash: "research" },
-  { key: "leadership", label: "Leadership", hash: "community" },
   { key: "honors", label: "Honors", hash: "recognition" },
   { key: "interests", label: "Interests", hash: "outside" },
 ] as const;
@@ -48,40 +46,24 @@ function BadmintonGraphic() {
   );
 }
 
-function ExperienceTile({
-  slug,
-  compact = false,
-  featured = false,
-}: { slug: string; compact?: boolean; featured?: boolean }) {
-  const project = getProject(slug);
-  return (
-    <Link
-      href={`/work/${slug}`}
-      className={`${styles.experienceTile} ${compact ? styles.compactTile : ""} ${featured ? styles.featuredTile : ""} ${!project.cover && !project.visual ? styles.textTile : ""}`}
-    >
-      {(project.cover || project.visual) && (
-        <div className={styles.tileArt}>
-          <ProjectArtwork visual={project.visual} media={project.cover} />
-        </div>
-      )}
-      <div className={styles.tileCopy}>
-        <div className={`action-heading ${styles.tileTitle}`}>
-          <h3>{project.title}</h3>
-          <ActionArrow />
-        </div>
-        <p>{featured ? project.summary : (project.status ?? project.role)}</p>
-      </div>
-    </Link>
-  );
-}
-
 export function AboutProfile() {
   const [active, setActive] = useState<Section>("overview");
   const [honorYear, setHonorYear] = useState("All");
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    const sync = () => setActive(sectionFromHash());
+    const sync = () => {
+      const hash = window.location.hash;
+      if (hash === "#research") {
+        window.location.replace("/climate/#research-fieldwork");
+        return;
+      }
+      if (hash === "#community" || hash === "#leadership") {
+        window.location.replace("/projects/");
+        return;
+      }
+      setActive(sectionFromHash());
+    };
     sync();
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
@@ -141,7 +123,7 @@ export function AboutProfile() {
         </div>
         <div className={styles.identityCopy}>
           <h2>Aiden Song</h2>
-          <p>Student at SHSID. Oceanography and machine learning.</p>
+          <p>Student at SHSID. Research, music, and science education.</p>
           <div className={styles.identityFacts}>
             <p>
               <FiMapPin aria-hidden="true" />
@@ -276,7 +258,9 @@ export function AboutProfile() {
               <div className={styles.educationTimeline}>
                 {education.map((item, index) => (
                   <article key={item.title} className={styles.educationEntry}>
-                    <div className={`${styles.educationMark} ${index === 0 ? styles.schoolMark : ""}`}>
+                    <div
+                      className={`${styles.educationMark} ${index === 0 ? styles.schoolMark : ""}`}
+                    >
                       <Image
                         src={`/images/education/${educationMarks[index]}`}
                         alt=""
@@ -321,73 +305,7 @@ export function AboutProfile() {
             </>
           )}
 
-          {active === "research" && (
-            <>
-              <div className={styles.panelHeading}>
-                <h2>Research</h2>
-                <Link href="/work#Research" className="site-button compact">
-                  All projects
-                  <ActionArrow />
-                </Link>
-              </div>
-              <div className={`${styles.experienceGrid} ${styles.researchGrid}`}>
-                <ExperienceTile slug="density-driven-flows" featured />
-                <ExperienceTile slug="computational-oceanography" />
-                <ExperienceTile slug="yangtze-expedition" />
-              </div>
-              <details className={styles.disclosure}>
-                <summary>Earlier Research</summary>
-                <article>
-                  <h3>Atlantic Meridional Overturning Circulation</h3>
-                  <p>
-                    2023–2024: Oceanographic records and physical modeling to investigate weakening
-                    circulation and the role of freshwater input.
-                  </p>
-                </article>
-                <article>
-                  <h3>Zebrafish Caudal-Fin Regeneration</h3>
-                  <p>
-                    2023–2024: Temperature-dependent fin regeneration through a Chinese Academy of
-                    Sciences opportunity. The resulting report placed second in the Shanghai Science
-                    Association for Young Talent.
-                  </p>
-                </article>
-              </details>
-            </>
-          )}
-
-          {active === "leadership" && (
-            <>
-              <div className={styles.panelHeading}>
-                <h2>Leadership</h2>
-                <FiUsers aria-hidden="true" />
-              </div>
-              <div className={styles.experienceGrid}>
-                {[
-                  "alphadeer",
-                  "glacier-week",
-                  "crescent-philharmonic",
-                  "mathematical-modeling-club",
-                ].map((slug) => (
-                  <ExperienceTile key={slug} slug={slug} compact />
-                ))}
-              </div>
-              <details className={styles.disclosure}>
-                <summary>Climate Collaboration & Outreach</summary>
-                {community.slice(2).map((item) => (
-                  <article key={item.title}>
-                    <h3>{item.title}</h3>
-                    <p>{item.period}</p>
-                    <p>{item.text}</p>
-                  </article>
-                ))}
-              </details>
-            </>
-          )}
-
-          {active === "honors" && (
-            <HonorsPanel year={honorYear} onYearChange={setHonorYear} />
-          )}
+          {active === "honors" && <HonorsPanel year={honorYear} onYearChange={setHonorYear} />}
 
           {active === "interests" && (
             <>

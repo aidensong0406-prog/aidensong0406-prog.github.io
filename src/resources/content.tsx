@@ -23,16 +23,16 @@ const home: Home = {
   path: "/",
   image: "/og.png",
   label: "Home",
-  title: "Aiden Song — Research and Experience",
+  title: "Aiden Song — Climate, Music, and Projects",
   description:
-    "Aiden Song is a Shanghai-based student exploring oceanography, physics-informed AI, and the ways science connects with people.",
+    "Aiden Song is a student at Shanghai High School International Division working across coastal research, climate education, music, and independent projects.",
   headline: (
     <>
       Oceanography &<br />
       Computational Science
     </>
   ),
-  featured: { display: false, title: <>Selected work</>, href: "/work" },
+  featured: { display: false, title: <>Selected projects</>, href: "/projects" },
   subline: (
     <>
       I explore the natural world through physics and code, and build projects that bring science
@@ -44,7 +44,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: "About — Aiden Song",
-  description: "Research, education, community, and personal interests.",
+  description: "Aiden Song’s education, honors, and personal interests.",
   tableOfContent: { display: false, subItems: false },
   avatar: { display: true },
   calendar: { display: false, link: "" },
@@ -63,10 +63,10 @@ const about: About = {
   technical: { display: false, title: "Skills", skills: [] },
 };
 const work: Work = {
-  path: "/work",
-  label: "Experiences",
-  title: "Experiences — Aiden Song",
-  description: "Research, community projects, and creative experiments by Aiden Song.",
+  path: "/projects",
+  label: "Projects",
+  title: "Projects — Aiden Song",
+  description: "Mathematical modeling, AI education, and independent projects by Aiden Song.",
 };
 const blog: Blog = {
   path: "/blog",
