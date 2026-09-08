@@ -1,0 +1,22 @@
+.background {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(130deg, #f4f8fc, #ccdeeb 48%, #e9f1f7);
+}
+:global(:root[data-theme="light"]) .background {
+  display: block;
+}
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+}
+@media print {
+  :global(:root[data-theme="light"]) .background {
+    display: none;
+  }
+}

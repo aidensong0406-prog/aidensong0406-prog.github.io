@@ -12,6 +12,7 @@ import {
   type SpacingToken,
 } from "@once-ui-system/core";
 import { Footer } from "@/components/Footer";
+import { FlowingBackground } from "@/components/FlowingBackground";
 import { Header } from "@/components/Header";
 import { RouteGuard } from "@/components/RouteGuard";
 import { Providers } from "@/components/Providers";
@@ -96,6 +97,7 @@ export default async function RootLayout({
           padding="0"
           horizontal="center"
         >
+          <FlowingBackground />
           <a className="skip-link" href="#main-content">
             Skip to content
           </a>

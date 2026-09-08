@@ -35,7 +35,7 @@ Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes
 
 Community separates Crescent Philharmonic, the Mathematical Modeling Club, and Kaggle into sibling panels with matching headings, their own content, and clear spacing. The orchestra video appears near the start of its panel, before the founding story on mobile.
 
-Light mode uses a pearl and slate-blue background with a slow CSS drift. The footer provides a saved pause/resume preference; reduced-motion settings disable the movement automatically. Dark mode retains its existing background.
+Light mode uses [Paper Shaders’ Mesh Gradient](https://shaders.paper.design/mesh-gradient) for continuously flowing pearl and slate-blue shapes, with grain disabled. The WebGL2 renderer loads only when light mode is used, caps its rendering resolution, and pauses in hidden tabs. A static gradient is retained when WebGL2 is unavailable. The footer provides a saved pause/resume preference; reduced-motion settings disable the movement automatically. Dark mode retains its existing background. Paper Shaders is licensed under Apache-2.0; its [license](public/licenses/paper-shaders-LICENSE.txt) and [notice](public/licenses/paper-shaders-NOTICE.txt) ship with the site.
 
 Page navigation and About tabs use view transitions with brief fades and movement. Navigation stays in place, and About panels animate between their dimensions. Reduced-motion preferences disable the animations; browsers without native view transitions retain standard navigation and a CSS entrance fallback.
 

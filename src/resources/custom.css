@@ -32,45 +32,8 @@
   --portfolio-primary-text: #f8fafb;
   --portfolio-primary-hover: #365569;
 }
-/* One broad wash of cool light moves behind stable, high-contrast content. */
 :root[data-theme="light"] body {
   isolation: isolate;
-}
-:root[data-theme="light"] body::before {
-  content: "";
-  position: fixed;
-  inset: -18vmax;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    118deg,
-    #f7f9fb 10%,
-    #eef2f5 27%,
-    #d5e1e9 46%,
-    #e7eef3 63%,
-    #f8fafb 88%
-  );
-  transform-origin: 50% 50%;
-  animation: portfolio-light-flow 24s ease-in-out infinite alternate;
-  will-change: transform;
-}
-:root[data-theme="light"][data-background-motion="paused"] body::before {
-  animation-play-state: paused;
-}
-@keyframes portfolio-light-flow {
-  from {
-    transform: translate3d(-5%, -3%, 0) rotate(-7deg);
-    opacity: .78;
-  }
-  to {
-    transform: translate3d(6%, 4%, 0) rotate(9deg);
-    opacity: 1;
-  }
-}
-@media print {
-  :root[data-theme="light"] body::before {
-    display: none;
-  }
 }
 * {
   box-sizing: border-box;
@@ -649,11 +612,6 @@ a.text-link:hover,
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
-  }
-  :root[data-theme="light"] body::before {
-    animation: none;
-    transform: none;
-    will-change: auto;
   }
   .portfolio-card,
   .portfolio-shell .site-button {
