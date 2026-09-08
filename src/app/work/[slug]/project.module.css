@@ -16,12 +16,8 @@
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
-  gap: 36px;
+  gap: 48px;
   align-items: stretch;
-  padding: 28px;
-  border: var(--portfolio-panel-border);
-  border-radius: 20px;
-  background: var(--surface-background);
 }
 .heroCopy {
   min-width: 0;
@@ -56,8 +52,11 @@
   margin-top: 28px;
   overflow: hidden;
   border: var(--portfolio-panel-border);
-  border-radius: 16px;
+  border-radius: 12px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
 }
 .documentLink {
   display: flex;
@@ -115,11 +114,10 @@
 .highlights {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 34px;
-  padding: 26px 24px;
-  border: var(--portfolio-panel-border);
-  border-radius: 16px;
-  background: var(--surface-background);
+  margin-top: 36px;
+  padding: 26px 0;
+  border-top: 1px solid var(--portfolio-rule);
+  border-bottom: 1px solid var(--portfolio-rule);
 }
 .highlight {
   min-width: 0;
@@ -180,20 +178,25 @@
   border-top: 1px solid var(--portfolio-line);
 }
 .story {
-  display: grid;
-  gap: 18px;
   min-width: 0;
-  margin-top: 32px;
+  margin-top: 40px;
+  padding: 0 30px;
+  border: var(--portfolio-panel-border);
+  border-radius: 14px;
+  background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
 }
 .storySection {
   display: grid;
-  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
   gap: 36px;
-  padding: 26px;
-  border: var(--portfolio-panel-border);
-  border-radius: 16px;
-  background: var(--surface-background);
+  padding: 30px 0;
   scroll-margin-top: 112px;
+}
+.storySection + .storySection {
+  border-top: 1px solid var(--portfolio-line);
 }
 .storySection p {
   margin-top: 0;
@@ -201,9 +204,9 @@
   line-height: 1.8;
 }
 .related {
-  margin-top: 56px;
+  margin-top: 48px;
   padding-top: 30px;
-  border-top: 1px solid var(--portfolio-line);
+  border-top: 1px solid var(--portfolio-rule);
 }
 .relatedHeading {
   display: flex;
@@ -234,6 +237,8 @@
   border-radius: 14px;
   transition: border-color 180ms ease, background-color 180ms ease;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .relatedLink:hover {
   border-color: var(--portfolio-border-hover);
@@ -285,8 +290,6 @@
   .hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
-    padding: 20px;
-    border-radius: 16px;
   }
   .category {
     margin-bottom: 14px !important;
@@ -310,7 +313,7 @@
   }
   .highlights {
     grid-template-columns: minmax(0, 1fr);
-    padding: 8px 20px;
+    padding: 8px 0;
     margin-top: 24px;
   }
   .highlight {
@@ -339,10 +342,14 @@
   .focus {
     display: none;
   }
+  .story {
+    margin-top: 32px;
+    padding: 0 20px;
+  }
   .storySection {
     grid-template-columns: 1fr;
     gap: 12px;
-    padding: 20px;
+    padding: 24px 0;
     scroll-margin-top: 28px;
   }
   .related {
@@ -394,8 +401,11 @@
 .deliverablePanel {
   padding: 26px;
   border: var(--portfolio-panel-border);
-  border-radius: 18px;
+  border-radius: 14px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
   align-self: center;
 }
 .deliverablePanel > h2 {

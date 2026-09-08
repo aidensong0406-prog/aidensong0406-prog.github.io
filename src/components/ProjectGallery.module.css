@@ -6,8 +6,11 @@
   margin: 0;
   overflow: hidden;
   border: var(--portfolio-panel-border);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
 }
 .imageFrame {
   position: relative;
@@ -75,9 +78,11 @@
   gap: 16px;
   padding: 10px;
   min-height: 78px;
-  border: var(--portfolio-panel-border);
-  border-radius: 12px;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 8px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
   color: inherit;
   text-align: left;
   cursor: pointer;

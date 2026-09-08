@@ -7,14 +7,14 @@
 }
 .identity {
   border: var(--portfolio-panel-border);
-  border-radius: 18px;
+  border-radius: 14px;
   overflow: hidden;
+  box-shadow: var(--portfolio-panel-shadow);
   position: sticky;
   top: 104px;
-  background: var(--page-background);
-}
-:global([data-theme="light"]) .identity {
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .identityArt {
   height: 180px;
@@ -71,16 +71,12 @@
 }
 .workspace {
   min-width: 0;
-  padding: 24px;
-  border: var(--portfolio-panel-border);
-  border-radius: 18px;
-  background: var(--surface-background);
 }
 .tabs {
   display: flex;
   gap: 0;
   width: 100%;
-  border-bottom: 1px solid var(--portfolio-line);
+  border-bottom: 1px solid var(--portfolio-rule);
   margin-bottom: 24px;
   overflow-x: auto;
   scrollbar-width: thin;
@@ -110,6 +106,15 @@
 .panel {
   min-width: 0;
   outline-offset: 6px;
+}
+.overviewPanel {
+  padding: 28px;
+  border: var(--portfolio-panel-border);
+  border-radius: 14px;
+  background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
 }
 .personalIntro {
   display: grid;
@@ -198,6 +203,8 @@
   overflow: hidden;
   color: inherit;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
   cursor: pointer;
 }
 .overviewTile:hover,
@@ -244,6 +251,8 @@
   text-align: left;
   color: inherit;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
   cursor: pointer;
 }
 .honorsSummary > svg:first-child {
@@ -266,6 +275,8 @@
   border-radius: 14px;
   overflow: hidden;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .educationEntry {
   display: flex;
@@ -351,6 +362,8 @@
   border: var(--portfolio-panel-border);
   border-radius: 14px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .testScores {
   display: grid;
@@ -380,6 +393,8 @@
   border-radius: 14px;
   overflow: hidden;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .interestCard > div:last-child {
   padding: 18px;
@@ -459,8 +474,8 @@
   }
 }
 @media (max-width: 550px) {
-  .workspace {
-    padding: 18px;
+  .overviewPanel {
+    padding: 20px;
   }
   .identity {
     display: block;

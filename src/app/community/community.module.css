@@ -11,14 +11,17 @@
 }
 .experiences {
   display: grid;
-  gap: 44px;
+  gap: 40px;
 }
 .experience {
   min-width: 0;
-  padding: 32px 36px;
+  padding: 36px 40px;
   border: var(--portfolio-panel-border);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
   scroll-margin-top: 108px;
 }
 .experienceHeader {
@@ -26,9 +29,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px 24px;
-  margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--portfolio-line);
+  margin-bottom: 32px;
 }
 .experienceHeader > div {
   display: grid;
@@ -67,7 +68,6 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 10px;
-  border: 1px solid var(--portfolio-border);
   object-fit: contain;
 }
 .performance figcaption {
@@ -86,7 +86,11 @@
 .modelingBody {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px;
+  gap: 32px;
+}
+.modelingBody > div + div {
+  padding-left: 32px;
+  border-left: 1px solid var(--portfolio-line);
 }
 .openSourceBody {
   max-width: 78ch;
@@ -137,13 +141,17 @@
   }
   .experienceHeader {
     margin-bottom: 24px;
-    padding-bottom: 20px;
   }
   .musicBody,
   .modelingBody,
   .reflection {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
+  }
+  .modelingBody > div + div {
+    padding: 20px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--portfolio-line);
   }
   .reflection {
     margin-top: 24px;

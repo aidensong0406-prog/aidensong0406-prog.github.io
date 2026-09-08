@@ -185,7 +185,7 @@ export function AboutProfile() {
         </div>
         <section
           key={active}
-          className={`${styles.panel} profile-panel`}
+          className={`${styles.panel} ${active === "overview" ? styles.overviewPanel : ""} profile-panel`}
           id={`profile-panel-${active}`}
           role="tabpanel"
           aria-labelledby={`profile-tab-${active}`}

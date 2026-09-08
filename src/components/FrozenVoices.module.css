@@ -6,8 +6,11 @@
   padding: 28px;
   margin-top: 28px;
   border: var(--portfolio-panel-border);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
 }
 .identity {
   display: block;

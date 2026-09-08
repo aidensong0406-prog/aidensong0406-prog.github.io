@@ -1,5 +1,6 @@
 /* Keep navigation stable while the content beneath it changes. */
-.site-header {
+/* Name the blurred element itself so its parent does not isolate the backdrop. */
+.site-navigation {
   view-transition-name: site-navigation;
 }
 .site-footer {

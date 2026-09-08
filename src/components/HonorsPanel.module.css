@@ -23,8 +23,11 @@
 .feature,
 .research {
   border: var(--portfolio-panel-border);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
 }
 .feature {
   display: grid;
@@ -99,7 +102,9 @@
   padding: 24px 28px;
 }
 .academic {
-  margin-top: 32px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--portfolio-rule);
 }
 .sectionHeading {
   display: flex;
@@ -173,6 +178,8 @@
   border: var(--portfolio-panel-border);
   border-radius: 8px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .filters button {
   padding: 6px 12px;
@@ -194,7 +201,7 @@
 .records {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: 12px;
+  gap: 16px;
   align-items: stretch;
 }
 .record {
@@ -206,6 +213,8 @@
   border: var(--portfolio-panel-border);
   border-radius: 12px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .competitionMark {
   position: relative;

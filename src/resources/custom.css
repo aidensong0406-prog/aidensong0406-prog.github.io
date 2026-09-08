@@ -5,10 +5,13 @@
   --font-code: ui-monospace, monospace;
   --portfolio-ink: var(--neutral-on-background-strong);
   --portfolio-muted: var(--portfolio-ink);
-  --portfolio-line: #414a56;
-  --portfolio-border: #626b78;
-  --portfolio-panel-border: 1.5px solid var(--portfolio-border);
-  --portfolio-border-hover: #a7b5c5;
+  --portfolio-line: #303a45;
+  --portfolio-border: #3c4652;
+  --portfolio-rule: #71808e;
+  --portfolio-panel-border: 1px solid var(--portfolio-border);
+  --portfolio-panel-shadow: 0 14px 36px -24px #0009, inset 0 1px 0 #ffffff0d;
+  --portfolio-panel-blur: blur(24px) saturate(0.85);
+  --portfolio-border-hover: #7b8d9c;
   --portfolio-action-bg: #17191c;
   --portfolio-action-text: #f3f4f5;
   --portfolio-action-border: #73777e;
@@ -23,10 +26,12 @@
 :root[data-theme="light"] {
   --page-background: #e9eef2;
   --surface-background: #f8fafb;
-  --portfolio-line: #b1bfc9;
-  --portfolio-border: #7c909f;
-  --portfolio-border-hover: #344f63;
-  --portfolio-navigation-bg: #f8fafbf2;
+  --portfolio-line: #49677f33;
+  --portfolio-border: #c1cbd3;
+  --portfolio-rule: #889ba9;
+  --portfolio-panel-shadow: 0 14px 36px -24px #23425966, inset 0 1px 0 #ffffff73;
+  --portfolio-border-hover: #8296a5;
+  --portfolio-navigation-bg: #f8fafb;
   --portfolio-action-bg: #f8fafb;
   --portfolio-action-text: #243642;
   --portfolio-action-border: #728593;
@@ -34,6 +39,33 @@
   --portfolio-primary-bg: #263e50;
   --portfolio-primary-text: #f8fafb;
   --portfolio-primary-hover: #365569;
+}
+:root[data-theme="dark"] {
+  --surface-background: #11161b;
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root[data-theme="light"] {
+    --surface-background: #ecf4fa70;
+    --portfolio-border: #f7fcff91;
+    --portfolio-navigation-bg: #eff6fbc7;
+  }
+  :root[data-theme="dark"] {
+    --surface-background: #18222c99;
+  }
+}
+/* biome-ignore lint/correctness/noUnknownMediaFeatureName: This standard Media Queries Level 5 preference is newer than our linter. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --portfolio-panel-blur: none;
+  }
+  :root[data-theme="light"] {
+    --surface-background: #edf3f8;
+    --portfolio-navigation-bg: #edf3f8;
+    --portfolio-border: #c1cbd3;
+  }
+  :root[data-theme="dark"] {
+    --surface-background: #11161b;
+  }
 }
 :root[data-theme="light"] body {
   isolation: isolate;
@@ -120,6 +152,8 @@ body {
   border: var(--portfolio-panel-border);
   border-radius: 999px;
   background: var(--portfolio-navigation-bg);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
   box-shadow: 0 4px 24px #0002;
 }
 .site-navigation > a {
@@ -324,6 +358,9 @@ a.text-link:hover,
   border: var(--portfolio-panel-border);
   border-radius: 16px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
   transition: border-color .2s, transform .2s;
 }
 .portfolio-card > .project-art {
@@ -374,6 +411,8 @@ a.text-link:hover,
   border: var(--portfolio-panel-border);
   border-radius: 16px;
   background: var(--surface-background);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  backdrop-filter: var(--portfolio-panel-blur);
 }
 .contact-panel a {
   overflow-wrap: anywhere;
