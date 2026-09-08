@@ -21,22 +21,19 @@ export default function Home() {
       title: "Research",
       href: "/research",
       image: "density-driven-flows",
-      description:
-        "From a homemade tank to ocean forecasting and Yangtze fieldwork: investigating what we can learn about moving water.",
+      description: "Ocean modeling, experiments, and Yangtze fieldwork.",
     },
     {
       title: "Impact",
       href: "/impact",
       image: "glacier-week",
-      description:
-        "Exhibitions and a family stone museum invite people to engage with science through food, play, and close observation.",
+      description: "Science exhibitions and a family stone museum.",
     },
     {
       title: "Community",
       href: "/community",
       image: "crescent-philharmonic",
-      description:
-        "Bringing strings and winds together, listening after performances, and building modeling notebooks that students can make their own.",
+      description: "Orchestra leadership, mathematical modeling, and shared code.",
     },
   ];
   return (
@@ -50,13 +47,8 @@ export default function Home() {
             Connecting Science to People.
           </p>
           <p>
-            I am a student at Shanghai High School International Division exploring how
-            computational science and artificial intelligence can help us understand a changing
-            ocean — and how science can become more accessible beyond the laboratory.
-          </p>
-          <p className={styles.scope}>
-            My work spans computational oceanography, climate research, mathematical modeling, and
-            science education.
+            I’m a student at Shanghai High School International Division, using physics and AI to
+            study a changing ocean and share science beyond the laboratory.
           </p>
           <div className="profile-actions">
             <Link className="site-button primary" href="/research">

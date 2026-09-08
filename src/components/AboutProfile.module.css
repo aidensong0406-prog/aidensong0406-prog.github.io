@@ -166,7 +166,7 @@
 }
 .personalNarrative p {
   max-width: 65ch;
-  margin-top: 12px !important;
+  margin: 0 !important;
 }
 .personalNarrative a {
   text-decoration: underline;

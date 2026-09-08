@@ -16,9 +16,7 @@ export default function Community() {
       <header className={styles.heading}>
         <h1>Community</h1>
         <p>
-          I lead an orchestra and a mathematical modeling club, and share my work through
-          open-source notebooks. Each has taught me how to make room for other people’s
-          contributions.
+          Making room for other people’s ideas through music, mathematical modeling, and shared code.
         </p>
       </header>
 
@@ -48,39 +46,16 @@ export default function Community() {
               <figcaption id="performance-caption">School performance excerpt, 1:16.</figcaption>
             </figure>
             <div className={styles.prose}>
-              <h3>Founding the Orchestra</h3>
               <p>
-                The crescendo in Gershwin’s <em>Rhapsody in Blue</em> brings strings and winds
-                together. At my school, those musicians trained in separate programs. In tenth
-                grade, I founded Crescent Philharmonic to make music like this possible.
-              </p>
-              <p>
-                Early rehearsals exposed our different training habits. With help from the music
-                department, we learned to share a musical language and perform repertoire the
-                separate programs could not take on alone.
+                Inspired by Gershwin’s <em>Rhapsody in Blue</em>, I brought our school’s strings
+                and winds together. Hospital performances later taught me to stay after the bow
+                and listen.
               </p>
             </div>
           </div>
 
-          <section className={styles.reflection} aria-labelledby="listening-title">
-            <h3 id="listening-title">Reflection</h3>
-            <div className={styles.prose}>
-              <p>
-                After a clarinet performance at a hospital, an elderly listener struggled to tell
-                me, “A concerto. This is a concerto.” I bowed and left. Only on the ride home did I
-                recognize my mistake: I had entered expecting sadness, while he wanted to tell me
-                what he heard in the music.
-              </p>
-              <p>
-                I began staying after the bow, listening to questions and taking requests. When
-                someone asked for <em>Howl’s Moving Castle</em>, I practiced it and brought it on
-                our next visit. I could not resolve the uncertainty of a hospital stay, but I could
-                leave time for a conversation whose subject was music.
-              </p>
-            </div>
-          </section>
           <Link className={styles.projectLink} href="/work/crescent-philharmonic">
-            Explore Crescent Philharmonic <ActionArrow />
+            Founding story &amp; performances <ActionArrow />
           </Link>
         </section>
 
@@ -92,25 +67,10 @@ export default function Community() {
             </div>
             <span className={styles.period}>2023 — Present</span>
           </header>
-          <div className={styles.modelingBody}>
-            <div className={styles.prose}>
-              <h3>A Place to Start</h3>
-              <p>
-                In our community of more than 100 students, I noticed two familiar obstacles: a
-                blank screen, or a finished solution to imitate. I designed starter notebooks that
-                supplied enough code to begin while leaving assumptions and modeling decisions open.
-              </p>
-            </div>
-            <div className={styles.prose}>
-              <h3>Building Shared Knowledge</h3>
-              <p>
-                I connected members whose approaches could help each other, shared their functions,
-                and incorporated their code into later notebooks. Members began building on earlier
-                work. Our notebooks became a shared memory, with each student’s contribution
-                available for someone else to extend.
-              </p>
-            </div>
-          </div>
+          <p className={styles.summary}>
+            My starter notebooks give 100+ students a place to begin, question assumptions, and
+            build on each other’s ideas.
+          </p>
           <Link className={styles.projectLink} href="/work/mathematical-modeling-club">
             Explore the Modeling Club <ActionArrow />
           </Link>
@@ -124,14 +84,9 @@ export default function Community() {
             </div>
             <span className={styles.period}>2024 — Present</span>
           </header>
-          <div className={styles.openSourceBody}>
-            <p>
-              I share reproducible notebooks, solution explanations, and reusable code on Kaggle. My
-              public notebooks have received more than 600 upvotes and 400 forks. Seeing an idea
-              become someone else’s starting point has changed what I value in sharing my work:
-              leaving room for others to adapt it and take it further.
-            </p>
-          </div>
+          <p className={styles.summary}>
+            I publish notebooks others can adapt and extend, with more than 600 upvotes and 400 forks.
+          </p>
         </section>
       </div>
     </main>

@@ -35,14 +35,12 @@ export default function Research() {
         <div className={styles.copy}>
           <h2 id="origin-title">The Question</h2>
           <p>
-            My family collected patterned stones from the Yangtze. I first saw landscapes in them;
-            later, I wondered about the currents and erosion that made those patterns possible.
+            Collecting Yangtze stones led me to build a lock-exchange tank and ask what physics could
+            reveal about currents beyond the motion I could see.
           </p>
-          <p>
-            I built a lock-exchange tank to watch dense water move beneath lighter water. Seeing a
-            larger ocean process in miniature raised another question: what could physics and
-            computation reveal beyond the motion I could observe?
-          </p>
+          <Link className={styles.textLink} href="/work/density-driven-flows">
+            Explore the experiment <ActionArrow />
+          </Link>
         </div>
       </section>
 
@@ -56,8 +54,7 @@ export default function Research() {
             </div>
             <p>
               I developed physics-informed neural networks to reconstruct density-driven flows from
-              sparse observations. Physical equations help constrain what the model infers between
-              measurements; comparisons with simulation reference fields test those reconstructions.
+              sparse observations, testing their predictions against simulated reference fields.
             </p>
             <Link className={styles.textLink} href="/work/density-driven-flows">
               Method and results <ActionArrow />
@@ -75,10 +72,8 @@ export default function Research() {
               <p className={styles.period}>June — August 2026, ECNU</p>
             </div>
             <p>
-              The next challenge was forecasting how water evolves. I worked with MeshGraphNets on
-              an ocean model’s triangular mesh, using water-level fields and atmospheric forcing to
-              predict storm-induced coastal changes. Moving to this larger, changing system made
-              testing a model’s limits even more consequential.
+              At ECNU, I used MeshGraphNets to forecast storm-driven coastal water levels, extending
+              my work from reconstructing flows to predicting their evolution.
             </p>
             <Link className={styles.textLink} href="/work/computational-oceanography">
               Research details <ActionArrow />
@@ -112,15 +107,8 @@ export default function Research() {
         </div>
         <div className={styles.copy}>
           <p>
-            Returning to the Yangtze gave me a different kind of evidence. I planned sampling sites
-            around confluences and geographic variety, but some map markers led to cliffs or
-            overgrown paths. Near 3,000 meters above sea level, reaching the water required finding
-            a staircase and a muddy path that my plan could not show.
-          </p>
-          <p>
-            Conversations also outgrew my questionnaire. A boat operator described tourism; other
-            interviewees spoke about relocation and mudslides. Water samples recorded physical
-            conditions. Listening revealed how changes in the river entered people’s lives.
+            Sampling and interviews along the Yangtze taught me to revise my plans when difficult
+            terrain and local stories challenged my assumptions.
           </p>
           <Link className={styles.textLink} href="/work/yangtze-expedition">
             Field notes and reflections <ActionArrow />
@@ -136,17 +124,11 @@ export default function Research() {
         <h2 id="reflection-title">Reflection</h2>
         <div className={styles.copy}>
           <p>
-            I learned to let evidence revise a plan. What surprised me was how quickly a careful map
-            or questionnaire became incomplete on the riverbank. I began with questions about
-            water’s physical changes; listening made people’s relationships with the river part of
-            the inquiry.
-          </p>
-          <p>
-            My open question remains: how far can physics and computation take us beyond our
-            observations, and where do we need to measure or listen again?
+            Models reveal patterns; fieldwork taught me when to measure again, revise an assumption,
+            or listen to a question I had not anticipated.
           </p>
           <Link className={styles.textLink} href="/impact">
-            Bringing these questions to the public <ActionArrow />
+            From research to public impact <ActionArrow />
           </Link>
         </div>
       </section>

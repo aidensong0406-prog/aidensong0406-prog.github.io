@@ -210,10 +210,9 @@ export function AboutProfile() {
                 <div className={styles.personalCopy}>
                   <h3>Family Collection</h3>
                   <p>
-                    As a child, I collected stones from the Yangtze riverbank. At home, we washed
-                    away the mud, turned them, and moved lamps until shapes appeared. My grandfather
-                    waited for the right view; the stone on my desk reveals a walnut tree at a
-                    particular angle.
+                    I grew up collecting stones along the Yangtze with my family. We washed off
+                    the mud, turned each stone, and moved lamps until shapes appeared. My grandfather
+                    waited for the right angle; I still do.
                   </p>
                   <Link href="/work/shishijie" className={styles.personalLink}>
                     View Shishijie <ActionArrow />
@@ -221,13 +220,9 @@ export function AboutProfile() {
                 </div>
               </div>
               <div className={styles.personalNarrative}>
-                <h3>Observation and Research</h3>
                 <p>
-                  Shishijie carries that way of looking into a browser, letting visitors turn study
-                  specimens and move the light. My interest in visible traces and unseen physical
-                  processes also leads into my research: combining limited observations with
-                  physical equations to{" "}
-                  <Link href="/work/density-driven-flows">reconstruct fluid motion</Link>.
+                  That habit of looking for hidden patterns now shapes both my digital museum and
+                  my <Link href="/work/density-driven-flows">research into how water moves</Link>.
                 </p>
               </div>
             </>

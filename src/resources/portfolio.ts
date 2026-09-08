@@ -95,6 +95,10 @@ export const projects: Project[] = [
     tags: ["Fluid dynamics", "Physics-informed AI"],
     sections: [
       {
+        title: "From the River to the Tank",
+        text: "My family collected patterned stones from the Yangtze. I first saw landscapes in them; later, I wondered about the currents and erosion that made their patterns possible. I built a lock-exchange tank to watch dense water move beneath lighter water. Seeing a larger ocean process in miniature made me ask what physics and computation could reveal beyond the motion I could observe.",
+      },
+      {
         title: "Research Objective",
         text: "Dense measurements of ocean currents and other geophysical flows are expensive and often unavailable. How much can the governing physics tell us when observations are sparse?",
       },
@@ -109,6 +113,10 @@ export const projects: Project[] = [
       {
         title: "Honors",
         text: "S.T. Yau Science Award, Global Top 10; Sichuan Science Fair, Top 9. Recognized as an Outstanding Student in the National Top Talent Program (Top 33 of 1,300+).",
+      },
+      {
+        title: "Open Question",
+        text: "How far can physics and computation take us beyond our observations, and where do we need to measure or listen again?",
       },
     ],
   },
@@ -441,8 +449,12 @@ export const projects: Project[] = [
         text: "I organized and led an orchestra concert for more than 500 audience members. The orchestra also performed at the school art festival and the school's first student-led concert.",
       },
       {
+        title: "Listening After the Bow",
+        text: "After a clarinet performance at a hospital, an elderly listener struggled to tell me, ‘A concerto. This is a concerto.’ I bowed and left. Only on the ride home did I recognize my mistake: I had entered expecting sadness, while he wanted to tell me what he heard in the music.",
+      },
+      {
         title: "Reflection",
-        text: "An elderly listener at a hospital tried to tell me what he heard in our music; I bowed and left before really listening. Since then, I have stayed after performances and taken requests, including returning with Howl’s Moving Castle. I am learning that making room for someone’s response is part of the performance itself.",
+        text: "I began staying after the bow, listening to questions and taking requests. When someone asked for Howl’s Moving Castle, I practiced it and brought it on our next visit. I could not resolve the uncertainty of a hospital stay, but I could leave time for a conversation whose subject was music. Making room for someone’s response became part of the performance itself.",
       },
     ],
   },

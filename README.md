@@ -5,10 +5,12 @@ A Next.js and React portfolio adapted from [Magic Portfolio](https://github.com/
 - Home introduces “Computing the Ocean, Connecting Science to People” and three visual entry points.
 - Research connects the original question, lock-exchange experiments, PINN-LOCK, coastal forecasting, Yangtze field observation, and reflection. It links directly to the unpublished research manuscript.
 - Impact presents Glacier Week, the upcoming Alphadeer exhibition, and Shishijie’s family origins.
-- Community tells the orchestra’s founding and listening stories alongside a school performance video, then connects shared modeling notebooks to collaborative leadership.
-- About opens with the family’s stone-appreciation ritual; Education, Honors, and Interests remain accessible tabs.
+- Community introduces the orchestra, modeling club, and Kaggle with brief descriptions and a school performance video; individual experience pages contain the founding and reflection stories.
+- About opens with a short personal introduction to the family’s stone-appreciation ritual; Education, Honors, and Interests remain accessible tabs.
 - Individual experiences retain their `/work/{slug}` URLs for process, results, and media. Each highlights its parent section in navigation.
 - Résumé opens the original supplied PDF directly; Class of 2027 remains the graduation year.
+
+Top-level pages use short descriptions and direct links to fuller stories. Research’s personal origin and open question, and the hospital performance reflection, are preserved on their individual experience pages.
 
 ## Run locally
 

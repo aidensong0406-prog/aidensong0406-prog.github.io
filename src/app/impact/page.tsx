@@ -18,8 +18,8 @@ export default function Impact() {
       <header className={styles.heading}>
         <h1>Impact</h1>
         <p>
-          Alongside my research, I explore how people find a personal connection to an unfamiliar
-          subject — through a meal, a game, or the quiet act of looking.
+          I bring science and observation into everyday experience through exhibitions, shared family
+          rituals, and education.
         </p>
       </header>
 
@@ -38,13 +38,8 @@ export default function Impact() {
         <div className={styles.copy}>
           <h2 id="glacier-title">Glacier Week</h2>
           <p>
-            I first imagined Glacier Week as posters and a melting-ice installation. Both still made
-            glacier loss feel distant, so I connected it to familiar food: visitors became diners,
-            with a game and videos offering other ways to join in.
-          </p>
-          <p>
-            Across four days and more than 84 visiting classes, I learned to start with an
-            experience someone could enter, then build toward the science.
+            To make glacier loss feel personal, I created a four-day exhibition for 84+ classes with
+            familiar food, melting ice, and an interactive game.
           </p>
           <Link className={styles.textLink} href="/work/glacier-week">
             Exhibition &amp; Film <ActionArrow />
@@ -62,8 +57,7 @@ export default function Impact() {
             />
           </div>
           <figcaption>
-            Lighting controls and observations accompany a synthetic study specimen in the browser
-            prototype.
+            Browser prototype with a synthetic study specimen.
           </figcaption>
         </figure>
         <div className={styles.copy}>
@@ -72,11 +66,9 @@ export default function Impact() {
             <p>From a Family Collection to a Digital Museum</p>
           </div>
           <p>
-            At home, my family turns Yangtze stones and moves lamps until a shape appears. A
-            photograph captured the object but left out that shared ritual. In Shishijie, visitors
-            can rotate an exhibit, change its lighting, and search for their own patterns.
+            Inspired by my family’s ritual of turning Yangtze stones under a lamp, I built a museum
+            where visitors discover patterns through movement and light.
           </p>
-          <p>Designing it has made me ask which features help someone look more carefully.</p>
           <Link className={styles.textLink} href="/work/shishijie">
             Explore Shishijie <ActionArrow />
           </Link>
@@ -97,9 +89,8 @@ export default function Impact() {
         </div>
         <div className={styles.copy}>
           <p>
-            I am preparing an exhibition through Alphadeer, a separate education initiative. My work
-            also includes translating UNESCO’s student AI competency framework into Chinese and
-            researching how students learn about AI.
+            I am preparing Alphadeer’s education exhibition, building on my Chinese translation of
+            UNESCO’s student AI framework and research into how students learn.
           </p>
           <Link className={styles.textLink} href="/work/alphadeer">
             Explore Alphadeer <ActionArrow />

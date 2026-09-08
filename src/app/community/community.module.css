@@ -50,7 +50,7 @@
 .musicBody {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-  align-items: start;
+  align-items: center;
   gap: 32px;
 }
 .prose {
@@ -75,25 +75,8 @@
   font-size: 14px;
   line-height: 1.55;
 }
-.reflection {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-  gap: 24px;
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid var(--portfolio-line);
-}
-.modelingBody {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
-}
-.modelingBody > div + div {
-  padding-left: 32px;
-  border-left: 1px solid var(--portfolio-line);
-}
-.openSourceBody {
-  max-width: 78ch;
+.summary {
+  max-width: 64ch;
 }
 .projectLink {
   display: flex;
@@ -117,8 +100,7 @@
   .experienceHeader {
     flex-wrap: wrap;
   }
-  .musicBody,
-  .modelingBody {
+  .musicBody {
     gap: 26px;
   }
 }
@@ -142,20 +124,9 @@
   .experienceHeader {
     margin-bottom: 24px;
   }
-  .musicBody,
-  .modelingBody,
-  .reflection {
+  .musicBody {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
-  }
-  .modelingBody > div + div {
-    padding: 20px 0 0;
-    border-left: 0;
-    border-top: 1px solid var(--portfolio-line);
-  }
-  .reflection {
-    margin-top: 24px;
-    gap: 14px;
   }
   .projectLink {
     margin-top: 24px;
