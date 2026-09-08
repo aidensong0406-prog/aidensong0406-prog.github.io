@@ -5,8 +5,10 @@
   --font-code: ui-monospace, monospace;
   --portfolio-ink: var(--neutral-on-background-strong);
   --portfolio-muted: var(--portfolio-ink);
-  --portfolio-line: var(--neutral-alpha-weak);
-  --portfolio-border-hover: var(--neutral-alpha-medium);
+  --portfolio-line: #414a56;
+  --portfolio-border: #626b78;
+  --portfolio-panel-border: 1.5px solid var(--portfolio-border);
+  --portfolio-border-hover: #a7b5c5;
   --portfolio-action-bg: #17191c;
   --portfolio-action-text: #f3f4f5;
   --portfolio-action-border: #73777e;
@@ -21,8 +23,9 @@
 :root[data-theme="light"] {
   --page-background: #e9eef2;
   --surface-background: #f8fafb;
-  --portfolio-line: #354f6326;
-  --portfolio-border-hover: #354f6359;
+  --portfolio-line: #b1bfc9;
+  --portfolio-border: #7c909f;
+  --portfolio-border-hover: #344f63;
   --portfolio-navigation-bg: #f8fafbf2;
   --portfolio-action-bg: #f8fafb;
   --portfolio-action-text: #243642;
@@ -114,7 +117,7 @@ body {
   align-items: center;
   gap: 4px;
   padding: 5px;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 999px;
   background: var(--portfolio-navigation-bg);
   box-shadow: 0 4px 24px #0002;
@@ -318,7 +321,7 @@ a.text-link:hover,
   flex-direction: column;
   overflow: hidden;
   min-width: 0;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 16px;
   background: var(--surface-background);
   transition: border-color .2s, transform .2s;
@@ -368,8 +371,9 @@ a.text-link:hover,
   gap: 20px;
   margin-top: 36px;
   padding: 28px;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 16px;
+  background: var(--surface-background);
 }
 .contact-panel a {
   overflow-wrap: anywhere;

@@ -16,8 +16,12 @@
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
-  gap: 48px;
+  gap: 36px;
   align-items: stretch;
+  padding: 28px;
+  border: var(--portfolio-panel-border);
+  border-radius: 20px;
+  background: var(--surface-background);
 }
 .heroCopy {
   min-width: 0;
@@ -50,15 +54,20 @@
 }
 .documents {
   margin-top: 28px;
-  border-top: 1px solid var(--portfolio-line);
-  border-bottom: 1px solid var(--portfolio-line);
+  overflow: hidden;
+  border: var(--portfolio-panel-border);
+  border-radius: 16px;
+  background: var(--surface-background);
 }
 .documentLink {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 22px 0;
+  padding: 22px 24px;
+}
+.documentLink + .documentLink {
+  border-top: 1px solid var(--portfolio-line);
 }
 .documentLink p {
   margin-top: 6px;
@@ -107,9 +116,10 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 34px;
-  padding: 26px 0;
-  border-top: 1px solid var(--portfolio-line);
-  border-bottom: 1px solid var(--portfolio-line);
+  padding: 26px 24px;
+  border: var(--portfolio-panel-border);
+  border-radius: 16px;
+  background: var(--surface-background);
 }
 .highlight {
   min-width: 0;
@@ -170,24 +180,20 @@
   border-top: 1px solid var(--portfolio-line);
 }
 .story {
+  display: grid;
+  gap: 18px;
   min-width: 0;
-  margin-top: 40px;
-  border-top: 1px solid var(--portfolio-line);
+  margin-top: 32px;
 }
 .storySection {
   display: grid;
   grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
   gap: 36px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--portfolio-line);
+  padding: 26px;
+  border: var(--portfolio-panel-border);
+  border-radius: 16px;
+  background: var(--surface-background);
   scroll-margin-top: 112px;
-}
-.storySection:first-child {
-  padding-top: 28px;
-}
-.storySection:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
 }
 .storySection p {
   margin-top: 0;
@@ -224,9 +230,10 @@
   gap: 18px;
   min-width: 0;
   padding: 14px;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 14px;
   transition: border-color 180ms ease, background-color 180ms ease;
+  background: var(--surface-background);
 }
 .relatedLink:hover {
   border-color: var(--portfolio-border-hover);
@@ -278,6 +285,8 @@
   .hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+    padding: 20px;
+    border-radius: 16px;
   }
   .category {
     margin-bottom: 14px !important;
@@ -301,7 +310,7 @@
   }
   .highlights {
     grid-template-columns: minmax(0, 1fr);
-    padding: 8px 0;
+    padding: 8px 20px;
     margin-top: 24px;
   }
   .highlight {
@@ -333,7 +342,7 @@
   .storySection {
     grid-template-columns: 1fr;
     gap: 12px;
-    padding: 24px 0;
+    padding: 20px;
     scroll-margin-top: 28px;
   }
   .related {
@@ -384,7 +393,7 @@
 }
 .deliverablePanel {
   padding: 26px;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 18px;
   background: var(--surface-background);
   align-self: center;

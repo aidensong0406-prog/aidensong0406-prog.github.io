@@ -22,7 +22,7 @@
 }
 .feature,
 .research {
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 16px;
   background: var(--surface-background);
 }
@@ -170,8 +170,9 @@
   min-width: 0;
   margin: 0;
   padding: 3px;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 8px;
+  background: var(--surface-background);
 }
 .filters button {
   padding: 6px 12px;
@@ -202,7 +203,7 @@
   gap: 16px;
   padding: 20px;
   min-height: 128px;
-  border: 1px solid var(--portfolio-line);
+  border: var(--portfolio-panel-border);
   border-radius: 12px;
   background: var(--surface-background);
 }

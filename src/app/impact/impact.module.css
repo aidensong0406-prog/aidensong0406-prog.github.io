@@ -14,11 +14,11 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
   align-items: center;
   gap: 48px;
-  padding-bottom: 42px;
-}
-.feature + .feature {
-  padding-top: 42px;
-  border-top: 1px solid var(--portfolio-line);
+  padding: 32px;
+  margin-bottom: 32px;
+  border: var(--portfolio-panel-border);
+  border-radius: 16px;
+  background: var(--surface-background);
 }
 .copy,
 .projectHeading {
@@ -42,6 +42,7 @@
   aspect-ratio: 16 / 11;
   overflow: hidden;
   border-radius: 12px;
+  border: 1px solid var(--portfolio-border);
 }
 .image > div,
 .logo > div {
@@ -78,8 +79,11 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
   gap: 48px;
   align-items: start;
-  border-top: 1px solid var(--portfolio-line);
-  padding: 36px 0;
+  padding: 32px;
+  margin-bottom: 32px;
+  border: var(--portfolio-panel-border);
+  border-radius: 16px;
+  background: var(--surface-background);
 }
 .initiativeHeading {
   display: flex;
@@ -94,6 +98,7 @@
   flex: 0 0 88px;
   border-radius: 10px;
   overflow: hidden;
+  border: 1px solid var(--portfolio-border);
 }
 .initiative .projectHeading > p,
 .page .period {
@@ -101,7 +106,10 @@
   line-height: 1.6;
 }
 .details {
-  border-top: 1px solid var(--portfolio-line);
+  padding: 4px 32px;
+  border: var(--portfolio-panel-border);
+  border-radius: 16px;
+  background: var(--surface-background);
   scroll-margin-top: 108px;
 }
 .details summary {
@@ -134,8 +142,13 @@
 .programs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 48px;
+  gap: 24px;
   padding: 12px 0 24px;
+}
+.programs > article {
+  padding: 22px;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 10px;
 }
 .seminarLink {
   display: flex;
@@ -168,11 +181,10 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
-  .feature {
-    padding-bottom: 28px;
-  }
-  .feature + .feature {
-    padding-top: 28px;
+  .feature,
+  .initiative {
+    padding: 24px;
+    margin-bottom: 24px;
   }
   .museum .figure,
   .museum .copy {
@@ -182,8 +194,8 @@
   .copy {
     gap: 14px;
   }
-  .initiative {
-    padding: 28px 0;
+  .details {
+    padding-inline: 24px;
   }
   .initiativeHeading {
     gap: 18px;
@@ -193,8 +205,19 @@
     height: 72px;
     flex-basis: 72px;
   }
-  .programs > article + article {
-    padding-top: 24px;
-    border-top: 1px solid var(--portfolio-line);
+  .programs > article {
+    padding: 18px;
+  }
+}
+@media (max-width: 400px) {
+  .feature,
+  .initiative {
+    padding: 20px 18px;
+  }
+  .details {
+    padding-inline: 18px;
+  }
+  .programs > article {
+    padding: 16px;
   }
 }
