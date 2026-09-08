@@ -3,9 +3,9 @@ import { createPageMetadata } from "@/utils/metadata";
 
 export const metadata = {
   ...createPageMetadata({
-    title: "Projects — Aiden Song",
+    title: "Research — Aiden Song",
     description: "Explore Aiden Song’s projects and research.",
-    path: "/projects",
+    path: "/research",
   }),
   robots: { index: false, follow: true },
 };
@@ -13,11 +13,11 @@ export const metadata = {
 export default function Work() {
   return (
     <LegacyPageRedirect
-      title="Projects"
-      href="/projects/"
+      title="Research"
+      href="/research/"
       hashRedirects={{
-        "#Research": "/climate/#research-fieldwork",
-        "#research": "/climate/#research-fieldwork",
+        "#Research": "/research/#research-fieldwork",
+        "#research": "/research/#research-fieldwork",
       }}
     />
   );

@@ -11,17 +11,19 @@ export const Header = () => {
   const projectSection = pathname.startsWith("/work/")
     ? getProjectSection(pathname.slice("/work/".length))
     : undefined;
-  const sectionPath = projectSection?.path.replace(/\/$/, "");
+  const sectionPath =
+    projectSection?.path ??
+    (pathname === "/climate" ? "/research" : pathname === "/music" ? "/community" : undefined);
   return (
     <header className="site-header">
       <nav className="site-navigation" aria-label="Main navigation">
         {[
           { href: "/", label: "Home" },
-          { href: "/about", label: "About" },
-          ...[siteSections.climate, siteSections.music, siteSections.projects].map((section) => ({
+          ...Object.values(siteSections).map((section) => ({
             href: section.path,
             label: section.label,
           })),
+          { href: "/about", label: "About" },
         ].map((item) => {
           const itemPath = item.href.replace(/\/$/, "") || "/";
           const selected = pathname === itemPath || sectionPath === itemPath;

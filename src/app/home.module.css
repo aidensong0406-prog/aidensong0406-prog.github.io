@@ -1,3 +1,17 @@
+.intro {
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, .8fr);
+  gap: 48px;
+}
+.intro .brand {
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -.02em;
+}
+.intro .scope {
+  margin-top: 12px;
+}
 .portraitPlaceholder {
   position: relative;
   display: flex;
@@ -24,7 +38,7 @@
 }
 .gateways {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 44px 32px;
   padding: 32px 0 12px;
   border-top: 1px solid var(--portfolio-line);
@@ -57,16 +71,6 @@
   gap: 16px;
   --action-arrow-size: 20px;
 }
-.featuredGateway {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
-  align-items: center;
-  gap: 40px;
-}
-.featuredGateway .gatewayCopy {
-  max-width: 32ch;
-}
 .gateway:is(:hover, :focus-visible) .gatewayArtwork > div {
   transform: scale(1.025);
 }
@@ -90,11 +94,15 @@
   .gateways {
     gap: 36px 24px;
   }
-  .featuredGateway {
-    gap: 28px;
-  }
 }
 @media (max-width: 700px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .intro .brand {
+    font-size: 25px;
+  }
   .portraitPlaceholder {
     width: min(100%, 280px);
     justify-self: center;
@@ -104,15 +112,13 @@
     gap: 32px;
     padding-top: 24px;
   }
-  .gateway,
-  .featuredGateway {
+  .gateway {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
   }
-  .gatewayCopy,
-  .featuredGateway .gatewayCopy {
+  .gatewayCopy {
     max-width: 44ch;
   }
   .contact {

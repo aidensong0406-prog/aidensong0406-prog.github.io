@@ -55,11 +55,11 @@ export function AboutProfile() {
     const sync = () => {
       const hash = window.location.hash;
       if (hash === "#research") {
-        window.location.replace("/climate/#research-fieldwork");
+        window.location.replace("/research/#research-fieldwork");
         return;
       }
       if (hash === "#community" || hash === "#leadership") {
-        window.location.replace("/projects/");
+        window.location.replace("/community/");
         return;
       }
       setActive(sectionFromHash());
@@ -195,57 +195,40 @@ export function AboutProfile() {
           {active === "overview" && (
             <>
               <h2 className="sr-only">Overview</h2>
-              <Link href="/work/shishijie" className={styles.personalFeature}>
-                <div className={styles.personalArt}>
-                  <ProjectArtwork
-                    visual="stone"
-                    media={getProject("shishijie").cover}
-                    priority
-                    sizes="(max-width: 550px) 94vw, 450px"
-                  />
-                </div>
+              <div className={styles.personalIntro}>
+                <figure className={styles.personalFigure}>
+                  <div className={styles.personalArt}>
+                    <ProjectArtwork
+                      visual="stone"
+                      media={getProject("shishijie").cover}
+                      priority
+                      sizes="(max-width: 550px) 94vw, 400px"
+                    />
+                  </div>
+                  <figcaption>Shishijie prototype with a synthetic study specimen.</figcaption>
+                </figure>
                 <div className={styles.personalCopy}>
                   <h3>Family Collection</h3>
                   <p>
-                    My family's 200+ Yangtze stones inspired Shishijie, an interactive online
-                    museum.
+                    As a child, I collected stones from the Yangtze riverbank. At home, we washed
+                    away the mud, turned them, and moved lamps until shapes appeared. My grandfather
+                    waited for the right view; the stone on my desk reveals a walnut tree at a
+                    particular angle.
                   </p>
-                  <span>
-                    Explore Shishijie <ActionArrow />
-                  </span>
+                  <Link href="/work/shishijie" className={styles.personalLink}>
+                    View Shishijie <ActionArrow />
+                  </Link>
                 </div>
-              </Link>
-              <div className={styles.personalStudies}>
-                <Link href="/work/density-driven-flows" className={styles.personalStudy}>
-                  <div className={styles.personalStudyArt}>
-                    <ProjectArtwork
-                      visual="flow"
-                      media={getProject("density-driven-flows").cover}
-                    />
-                  </div>
-                  <div className={styles.personalCopy}>
-                    <h3 className="action-heading">
-                      Research
-                      <ActionArrow />
-                    </h3>
-                    <p>Reconstructing fluid flows with physics-informed AI.</p>
-                  </div>
-                </Link>
-                <Link href="/work/crescent-philharmonic" className={styles.personalStudy}>
-                  <div className={styles.personalStudyArt}>
-                    <ProjectArtwork
-                      visual="music"
-                      media={getProject("crescent-philharmonic").cover}
-                    />
-                  </div>
-                  <div className={styles.personalCopy}>
-                    <h3 className="action-heading">
-                      Music
-                      <ActionArrow />
-                    </h3>
-                    <p>Founder of the school's first full orchestra.</p>
-                  </div>
-                </Link>
+              </div>
+              <div className={styles.personalNarrative}>
+                <h3>Observation and Research</h3>
+                <p>
+                  Shishijie carries that way of looking into a browser, letting visitors turn study
+                  specimens and move the light. My interest in visible traces and unseen physical
+                  processes also leads into my research: combining limited observations with
+                  physical equations to{" "}
+                  <Link href="/work/density-driven-flows">reconstruct fluid motion</Link>.
+                </p>
               </div>
             </>
           )}
@@ -326,7 +309,7 @@ export function AboutProfile() {
                     <p>An interactive museum inspired by my family's Yangtze stone collection.</p>
                   </div>
                 </Link>
-                <Link className={styles.interestCard} href="/work/crescent-philharmonic">
+                <Link className={styles.interestCard} href="/community#music">
                   <div className={styles.interestArt}>
                     <ProjectArtwork
                       visual="music"

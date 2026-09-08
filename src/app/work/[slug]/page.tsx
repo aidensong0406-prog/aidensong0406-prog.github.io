@@ -33,7 +33,7 @@ const highlights: Record<string, { value: string; label: string }[]> = {
     { value: "Top 33 / 1,300+", label: "National Top Talent Program" },
   ],
   shishijie: [
-    { value: "200+ stones", label: "Family collection" },
+    { value: "Family collection", label: "Yangtze stone appreciation" },
     { value: "Interactive 3D", label: "Rotatable museum exhibits" },
     { value: "Contribution design", label: "Device-local draft workflow" },
   ],
@@ -48,9 +48,9 @@ const highlights: Record<string, { value: string; label: string }[]> = {
     { value: "Research manuscript", label: "Figures and scientific writing" },
   ],
   "yangtze-expedition": [
-    { value: "50+ interviews", label: "Residents, workers, and stakeholders" },
-    { value: "Water sampling", label: "Collection and analysis" },
-    { value: "Yangtze River", label: "Headwaters toward downstream regions" },
+    { value: "10+ cities", label: "Places visited along the Yangtze" },
+    { value: "30+ water samples", label: "Collected during the expedition" },
+    { value: "50+ interviews", label: "Conversations with local people" },
   ],
   alphadeer: [
     { value: "30+ members", label: "Student-led education team" },
@@ -58,7 +58,7 @@ const highlights: Record<string, { value: string; label: string }[]> = {
     { value: "10+ seminars", label: "Speakers secured by the team" },
   ],
   "crescent-philharmonic": [
-    { value: "100+ members", label: "The school's first full orchestra" },
+    { value: "Strings and winds", label: "The school's first full orchestra" },
     { value: "100+ hours", label: "Collective service hours" },
     { value: "500+ audience", label: "Orchestra concert" },
   ],
@@ -153,6 +153,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <p className={styles.category}>{parentSection.label}</p>
           {project.status && <p className={styles.status}>{project.status}</p>}
           <h1>{project.title}</h1>
+          {project.subtitle && <p className={styles.storyTitle}>{project.subtitle}</p>}
           <p className={styles.summary}>{project.summary}</p>
           <dl className={styles.metadata}>
             <div>
@@ -184,6 +185,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {project.gallery && <ProjectGallery images={project.gallery} title={project.title} />}
       {slug === "glacier-week" && <FrozenVoices />}
+
+      {project.documents && (
+        <section className={styles.documents} aria-label="Research documents">
+          {project.documents.map((document) => (
+            <a className={styles.documentLink} href={document.href} key={document.href}>
+              <div>
+                <h2>{document.title}</h2>
+                <p>{document.description}</p>
+              </div>
+              <ActionArrow />
+            </a>
+          ))}
+        </section>
+      )}
 
       {!project.gallery && !project.status && !project.deliverables && (
         <section className={styles.highlights} aria-label="Project highlights">

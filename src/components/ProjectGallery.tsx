@@ -23,7 +23,7 @@ export function ProjectGallery({
           style={{ aspectRatio: selected.ratio ?? "16 / 10" }}
         >
           {selected.video ? (
-            // biome-ignore lint/a11y/useMediaCaption: The supplied Glacier Week film includes burned-in English subtitles.
+            // biome-ignore lint/a11y/useMediaCaption: The Glacier Week film has burned-in English subtitles; the orchestra excerpt is instrumental without spoken dialogue.
             <video
               key={selected.video}
               controls

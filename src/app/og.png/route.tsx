@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { home, person } from "@/resources/content";
+import { person } from "@/resources/content";
 
 export const runtime = "nodejs";
 export const dynamic = "force-static";
@@ -11,7 +11,7 @@ const fontData = readFile(
 );
 
 export async function GET() {
-  const title = home.title;
+  const title = "Computing the Ocean, Connecting Science to People.";
 
   return new ImageResponse(
     <div
@@ -43,7 +43,7 @@ export async function GET() {
           {person.firstName.charAt(0)}
           {person.lastName.charAt(0)}
         </div>
-        <div style={{ display: "flex", fontSize: 20 }}>RESEARCH & EXPERIENCE</div>
+        <div style={{ display: "flex", fontSize: 20 }}>{person.name}</div>
       </div>
       <div
         style={{

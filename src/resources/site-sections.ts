@@ -4,21 +4,21 @@ type SiteSection = {
   slugs: string[];
 };
 
-export const siteSections: Record<"climate" | "music" | "projects", SiteSection> = {
-  climate: {
-    label: "Climate",
-    path: "/climate",
-    slugs: ["computational-oceanography", "yangtze-expedition", "glacier-week"],
+export const siteSections: Record<"research" | "impact" | "community", SiteSection> = {
+  research: {
+    label: "Research",
+    path: "/research",
+    slugs: ["density-driven-flows", "computational-oceanography", "yangtze-expedition"],
   },
-  music: {
-    label: "Music",
-    path: "/music",
-    slugs: ["crescent-philharmonic"],
+  impact: {
+    label: "Impact",
+    path: "/impact",
+    slugs: ["glacier-week", "alphadeer", "shishijie"],
   },
-  projects: {
-    label: "Projects",
-    path: "/projects",
-    slugs: ["shishijie", "density-driven-flows", "alphadeer", "mathematical-modeling-club"],
+  community: {
+    label: "Community",
+    path: "/community",
+    slugs: ["crescent-philharmonic", "mathematical-modeling-club"],
   },
 };
 

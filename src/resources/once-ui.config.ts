@@ -22,6 +22,9 @@ const baseURL: string = siteURL.origin;
 const routes: RoutesConfig = {
   "/": true,
   "/about": true,
+  "/research": true,
+  "/impact": true,
+  "/community": true,
   "/climate": true,
   "/music": true,
   "/projects": true,

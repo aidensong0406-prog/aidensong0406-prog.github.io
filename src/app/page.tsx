@@ -16,43 +16,54 @@ export async function generateMetadata() {
 }
 
 export default function Home() {
-  const gateways = [
+  const chapters = [
     {
-      title: "Climate",
-      href: "/climate",
-      project: getProject("glacier-week"),
-      description: "Coastal forecasting, Yangtze fieldwork, and climate education.",
+      title: "Research",
+      href: "/research",
+      image: "density-driven-flows",
+      description:
+        "From a homemade tank to ocean forecasting and Yangtze fieldwork: investigating what we can learn about moving water.",
     },
     {
-      title: "Music",
-      href: "/music",
-      project: getProject("crescent-philharmonic"),
-      description: "Orchestra leadership, school concerts, and community performances.",
+      title: "Impact",
+      href: "/impact",
+      image: "glacier-week",
+      description:
+        "Exhibitions and a family stone museum invite people to engage with science through food, play, and close observation.",
     },
     {
-      title: "Projects",
-      href: "/projects",
-      project: getProject("shishijie"),
-      description: "Physics-informed AI, Alphadeer, and Shishijie's online rock museum.",
+      title: "Community",
+      href: "/community",
+      image: "crescent-philharmonic",
+      description:
+        "Bringing strings and winds together, listening after performances, and building modeling notebooks that students can make their own.",
     },
   ];
   return (
     <main id="main-content" className="portfolio-shell home-portfolio">
-      <header className="intro-panel">
+      <header className={`intro-panel ${styles.intro}`}>
         <div className="intro-copy">
           <h1>Aiden Song</h1>
+          <p className={styles.brand}>
+            Computing the Ocean,
+            <br />
+            Connecting Science to People.
+          </p>
           <p>
-            I'm a student at Shanghai High School International Division, exploring oceanography,
-            machine learning, and science education.
+            I am a student at Shanghai High School International Division exploring how
+            computational science and artificial intelligence can help us understand a changing
+            ocean — and how science can become more accessible beyond the laboratory.
+          </p>
+          <p className={styles.scope}>
+            My work spans computational oceanography, climate research, mathematical modeling, and
+            science education.
           </p>
           <div className="profile-actions">
-            <Link className="site-button primary" href="/about">
-              About
-              <ActionArrow />
+            <Link className="site-button primary" href="/research">
+              Research <ActionArrow />
             </Link>
             <a className="site-button" href="/AidenSongResume0831.pdf">
-              Résumé
-              <ActionArrow />
+              Résumé <ActionArrow />
             </a>
           </div>
         </div>
@@ -70,27 +81,22 @@ export default function Home() {
         </div>
       </header>
 
-      <nav className={styles.gateways} aria-label="Explore my work">
-        {gateways.map((gateway, index) => (
-          <Link
-            href={gateway.href}
-            className={`${styles.gateway} ${index === 0 ? styles.featuredGateway : ""}`}
-            key={gateway.href}
-          >
+      <nav className={styles.gateways} aria-label="Research, impact, and community">
+        {chapters.map((chapter) => (
+          <Link href={chapter.href} className={styles.gateway} key={chapter.href}>
             <div className={styles.gatewayArtwork}>
               <ProjectArtwork
                 visual={null}
-                media={gateway.project.cover}
-                priority={index === 0}
-                sizes="(max-width: 700px) 94vw, 560px"
+                media={getProject(chapter.image).cover}
+                sizes="(max-width: 700px) 94vw, 360px"
               />
             </div>
             <div className={styles.gatewayCopy}>
               <h2>
-                {gateway.title}
+                {chapter.title}
                 <ActionArrow />
               </h2>
-              <p>{gateway.description}</p>
+              <p>{chapter.description}</p>
             </div>
           </Link>
         ))}

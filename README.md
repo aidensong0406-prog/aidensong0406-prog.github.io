@@ -2,13 +2,13 @@
 
 A Next.js and React portfolio adapted from [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio), with Once UI styling and custom responsive layouts.
 
-- Home introduces the site’s Climate, Music, and Projects sections.
-- About uses accessible Overview, Education, Honors, and Interests tabs.
-- Climate brings together coastal research, Yangtze fieldwork, climate education, and public outreach.
-- Music presents Crescent Philharmonic Orchestra’s school and community performances.
-- Projects covers fluid-dynamics research, AI education, Shishijie, and the Mathematical Modeling Club.
-- Individual experience pages retain their `/work/{slug}` URLs and highlight their parent section in navigation.
-- Honors appears in About and relevant experience pages. Résumé opens the original supplied PDF directly.
+- Home introduces “Computing the Ocean, Connecting Science to People” and three visual entry points.
+- Research connects the original question, lock-exchange experiments, PINN-LOCK, coastal forecasting, Yangtze field observation, and reflection. It links directly to the unpublished research manuscript.
+- Impact presents Glacier Week, the upcoming Alphadeer exhibition, and Shishijie’s family origins.
+- Community tells the orchestra’s founding and listening stories alongside a school performance video, then connects shared modeling notebooks to collaborative leadership.
+- About opens with the family’s stone-appreciation ritual; Education, Honors, and Interests remain accessible tabs.
+- Individual experiences retain their `/work/{slug}` URLs for process, results, and media. Each highlights its parent section in navigation.
+- Résumé opens the original supplied PDF directly; Class of 2027 remains the graduation year.
 
 ## Run locally
 
@@ -31,7 +31,7 @@ npm run start
 
 Personal details are in `src/resources/content.tsx`. Projects, gallery captions, education, and honors are in `src/resources/portfolio.ts`. Section membership is defined in `src/resources/site-sections.ts`. Shared styles are in `src/resources/custom.css`; page-specific layouts have CSS modules beside their components.
 
-Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes. About sections support direct links and browser history. Legacy `/work` links redirect to Projects; `/work#Research` and `/about#research` open Climate’s Research & Fieldwork section. `/honors` opens About’s Honors tab, and `/about#community` and `/about#leadership` open Projects. Redirect-only routes are excluded from the sitemap. The original résumé is served unchanged from `public/AidenSongResume0831.pdf`; all résumé links open it directly, and `/resume` redirects to it.
+Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes. About sections support direct links and browser history. Legacy `/work` and `/climate` links open Research, with old section anchors mapped to their current destinations; climate outreach opens Impact. `/projects` opens Impact, `/music` opens Community’s music story, and `/honors` opens About’s Honors tab. `/about#community` and `/about#leadership` open Community. Redirect-only routes are excluded from the sitemap. The original résumé is served unchanged from `public/AidenSongResume0831.pdf`; all résumé links open it directly, and `/resume` redirects to it.
 
 Page navigation and About tabs use view transitions with brief fades and movement. Navigation stays in place, and About panels animate between their dimensions. Reduced-motion preferences disable the animations; browsers without native view transitions retain standard navigation and a CSS entrance fallback.
 
@@ -40,6 +40,10 @@ Honors pairs the lock-exchange photograph with research awards and uses compact 
 Project media includes the supplied Alphadeer logo, lock-exchange tank photograph, Glacier Week materials, and orchestra photograph. Alphadeer’s exhibition is in preparation; Glacier Week is a separate completed project. Shishijie screenshots show a browser prototype containing synthetic study specimens. The lock-exchange comparison comes from the PINN-LOCK paper’s `suntans_t300.png`. Captions retain their reference/model distinctions and units. Storm-surge images and decorative artwork are omitted from its cards and project page. The homepage opens with a personal introduction and an initials-based portrait placeholder until a portrait is supplied. Remaining SVG artwork is decorative.
 
 Glacier Week’s gallery includes the supplied film and full exhibition poster. The film is served as H.264/AAC MP4 with its original English subtitles, playback controls, inline playback, and no automatic preload. The Frozen Voices WeChat Channels section provides the exact account name, a copy action, search instructions, and a channel screenshot; no public account URL has been supplied.
+
+The school performance excerpt is served from `public/videos/orchestra/school-performance.mp4` as H.264 video with the source AAC audio preserved, native controls, inline playback, and no autoplay. The author-approved PINN-LOCK PDF is served unchanged from `public/papers/pinn-lock-research-manuscript.pdf` and labeled an unpublished research manuscript.
+
+Narrative passages also draw on the author’s supplied essays, without publishing application prompts, draft essays, or editorial comments. Yangtze route pins await actual locations; fieldwork and laboratory photographs await supplied media. Alphadeer’s 26 September 2026 exhibition is still upcoming; its future photographs are not represented as existing material.
 
 ## GitHub Pages
 

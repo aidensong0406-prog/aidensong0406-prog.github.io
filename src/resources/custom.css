@@ -538,7 +538,7 @@ a.text-link:hover,
   }
   .site-navigation > a {
     padding: 8px 6px;
-    font-size: 14px;
+    font-size: 13px;
   }
   .site-footer {
     width: calc(100% - 38px);
@@ -607,7 +607,7 @@ a.text-link:hover,
     gap: 0;
   }
   .site-navigation > a {
-    padding-inline: 4px;
+    padding-inline: 3px;
   }
   .navigation-theme {
     margin-left: 0;

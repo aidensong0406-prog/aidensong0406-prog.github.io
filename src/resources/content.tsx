@@ -23,20 +23,21 @@ const home: Home = {
   path: "/",
   image: "/og.png",
   label: "Home",
-  title: "Aiden Song — Climate, Music, and Projects",
+  title: "Aiden Song — Computing the Ocean, Connecting Science to People",
   description:
-    "Aiden Song is a student at Shanghai High School International Division working across coastal research, climate education, music, and independent projects.",
+    "Computing the Ocean, Connecting Science to People. Aiden Song connects computational oceanography, field observation, and science education.",
   headline: (
     <>
-      Oceanography &<br />
-      Computational Science
+      Computing the Ocean,
+      <br />
+      Connecting Science to People.
     </>
   ),
-  featured: { display: false, title: <>Selected projects</>, href: "/projects" },
+  featured: { display: false, title: <>Research</>, href: "/research" },
   subline: (
     <>
-      I explore the natural world through physics and code, and build projects that bring science
-      closer to people.
+      I use computational science and artificial intelligence to understand a changing ocean, and
+      develop ways to make science accessible beyond the laboratory.
     </>
   ),
 };
@@ -44,7 +45,8 @@ const about: About = {
   path: "/about",
   label: "About",
   title: "About — Aiden Song",
-  description: "Aiden Song’s education, honors, and personal interests.",
+  description:
+    "Family stone collecting, careful observation, and the questions connecting Aiden Song’s research and community work.",
   tableOfContent: { display: false, subItems: false },
   avatar: { display: true },
   calendar: { display: false, link: "" },
@@ -63,10 +65,11 @@ const about: About = {
   technical: { display: false, title: "Skills", skills: [] },
 };
 const work: Work = {
-  path: "/projects",
-  label: "Projects",
-  title: "Projects — Aiden Song",
-  description: "Mathematical modeling, AI education, and independent projects by Aiden Song.",
+  path: "/impact",
+  label: "Impact",
+  title: "Impact — Aiden Song",
+  description:
+    "Making scientific ideas accessible through exhibitions, education, and a digital museum.",
 };
 const blog: Blog = {
   path: "/blog",

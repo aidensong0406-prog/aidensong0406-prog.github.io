@@ -1,4 +1,4 @@
-// Project descriptions and experience are adapted from AidenSongResume0831.pdf.
+// Project descriptions draw on the supplied résumé and Aiden's personal essays.
 export type Project = {
   slug: string;
   title: string;
@@ -6,6 +6,8 @@ export type Project = {
   period: string;
   role: string;
   summary: string;
+  subtitle?: string;
+  documents?: { title: string; description: string; href: string }[];
   tags: string[];
   visual: "flow" | "mesh" | "river" | "stone" | "ice" | "learning" | "music" | "modeling" | null;
   status?: string;
@@ -54,6 +56,13 @@ export const projects: Project[] = [
   {
     slug: "density-driven-flows",
     title: "Density-Driven Flow Simulation",
+    documents: [
+      {
+        title: "PINN-LOCK Research Manuscript",
+        description: "Unpublished research manuscript, PDF",
+        href: "/papers/pinn-lock-research-manuscript.pdf",
+      },
+    ],
     category: "Research",
     period: "Apr 2024 — Feb 2026",
     role: "Student researcher",
@@ -91,7 +100,7 @@ export const projects: Project[] = [
       },
       {
         title: "Methodology",
-        text: "I developed a flow-reconstruction method combining physics-informed neural networks with governing physical equations. The project explored how physical constraints can help a model recover plausible density-driven flows from limited data.",
+        text: "I developed PINN-LOCK, a flow-reconstruction method combining physics-informed neural networks with governing physical equations. The project explored how physical constraints can help a model recover plausible density-driven flows from limited data.",
       },
       {
         title: "Research Program",
@@ -105,7 +114,8 @@ export const projects: Project[] = [
   },
   {
     slug: "shishijie",
-    title: "Shishijie Online Rock Museum",
+    title: "Shishijie",
+    subtitle: "From a Family Collection to a Digital Museum",
     category: "Creative",
     period: "Dec 2025 — Present",
     role: "Founder & developer",
@@ -116,7 +126,7 @@ export const projects: Project[] = [
       position: "35% center",
     },
     summary:
-      "An interactive 3D museum inspired by my family’s collection of more than 200 naturally patterned Yangtze stones.",
+      "A family ritual of turning stones, moving lamps, and finding patterns, translated into an interactive museum.",
     tags: ["Interactive 3D", "Digital preservation"],
     gallery: [
       {
@@ -143,16 +153,24 @@ export const projects: Project[] = [
     ],
     sections: [
       {
-        title: "Project Overview",
-        text: "My family's collection of naturally patterned Yangtze stones became the starting point for Shishijie, an online museum connecting geology, cultural storytelling, and interactive design.",
+        title: "A Family Ritual",
+        text: "At home, we washed mud from Yangtze stones, turned them, and moved lamps until a shape appeared. My grandfather would wait for the right angle: a dark streak might become a mountain ridge or a figure from a story. The stone on my desk reveals a walnut tree in a particular light.",
       },
       {
-        title: "Museum Design",
-        text: "I built a browser prototype with navigable rooms, rotatable exhibits, and lighting controls. It uses synthetic study specimens to develop how visitors examine an object and distinguish direct observations from interpretation. The family collection provides the motivation for the museum.",
+        title: "What a Photograph Leaves Out",
+        text: "Shishijie began as a digital display of the family collection. Photographs could show an object, but they left out the quiet work of looking: turning a stone, changing the light, and finding a pattern for yourself. I wanted visitors to take part in that process.",
       },
       {
-        title: "Contribution Design",
-        text: "The project includes a contribution workflow intended to extend the museum beyond a single collection. Visitors can prepare photographs and a stone record; in the current prototype, these drafts stay on their device.",
+        title: "Designing the Experience",
+        text: "I developed rotatable exhibits, movable lighting, and rooms visitors could explore. The browser prototype shown here uses synthetic study specimens to develop those interactions. The family collection and our way of looking at it remain the starting point.",
+      },
+      {
+        title: "Reflection",
+        text: "A feature mattered when it brought the experience closer to the ritual at home. That became a way to judge my design decisions: does this help someone look more carefully, or simply add another control?",
+      },
+      {
+        title: "Opening the Collection",
+        text: "I also designed a contribution workflow so the museum could eventually include other people’s stones and observations. In the current prototype, visitors can prepare photographs and a stone record; their drafts remain on their own device.",
       },
     ],
   },
@@ -224,16 +242,20 @@ export const projects: Project[] = [
     },
     sections: [
       {
-        title: "Exhibition Overview",
-        text: "I led an eight-member team to organize SHSID Glacier Week, a four-day K–12 climate-education exhibition across three campus sites, welcoming more than 84 visiting classes.",
+        title: "The Design Question",
+        text: "When I began planning Glacier Week, posters felt too distant. I added a melting-ice installation with ecosystem models, but kept asking what was missing from the audience’s experience. How could glacier loss become something people could connect with directly?",
       },
       {
-        title: "Exhibition Design",
-        text: "The exhibition combined research-based infographics, a melting-glacier art installation, a food display connecting sea-level rise to Shanghai cuisine, and an online trivia game I coded.",
+        title: "From Viewing to Participating",
+        text: "I introduced a dining exhibition linking glaciers, sea-level rise, and familiar foods. Alongside the installation, I coded an online trivia game and helped develop infographics and videos. I led an eight-member team through a four-day exhibition across three school sites, welcoming more than 84 visiting classes.",
       },
       {
         title: "Public Outreach",
-        text: "Our Frozen Voices social media project shared educational videos on topics including albedo feedback and the Atlantic Meridional Overturning Circulation, reaching more than 10,000 viewers in total.",
+        text: "Frozen Voices extended the exhibition through educational videos on topics including albedo feedback and the Atlantic Meridional Overturning Circulation, reaching more than 10,000 viewers in total.",
+      },
+      {
+        title: "Reflection",
+        text: "Each time the exhibition felt incomplete, I looked for another way for people to participate: a table, a game, a conversation. I began judging an idea by the experience it made possible, as well as the information it contained.",
       },
       {
         title: "Honors",
@@ -274,16 +296,28 @@ export const projects: Project[] = [
     role: "Field researcher",
     visual: "river",
     summary:
-      "Water sampling and conversations with 50+ people along the Yangtze, from high-altitude headwaters toward downstream regions.",
+      "A self-directed investigation across more than ten cities, combining over thirty water samples with more than fifty conversations.",
     tags: ["Fieldwork", "People & environment"],
     sections: [
       {
-        title: "Field Research",
-        text: "I collected and analyzed water samples along the Yangtze River, traveling from high-altitude headwaters toward downstream regions.",
+        title: "Planning the Investigation",
+        text: "I began with a map of confluences, cities, and tributaries, balancing geographic variety with the time available. Each planned stop had a sampling bottle prepared in advance. I wanted every stop to help me ask a more precise question about the river I had grown up collecting stones beside.",
       },
       {
-        title: "Community Interviews",
-        text: "Alongside the sampling, I interviewed more than 50 local residents, workers, and stakeholders to understand how hydropower development, climate change, tourism, and other forces are reshaping life across the basin.",
+        title: "When the Plan Met the Terrain",
+        text: "One carefully placed marker led to a cliff or an overgrown approach. In the mountains, at around 3,000 meters, I searched for a way to reach the water. A staircase and a muddy path finally made sampling possible. Across the expedition, I collected more than thirty samples in over ten cities.",
+      },
+      {
+        title: "Local Voices",
+        text: "I brought printed questionnaires, but a conversation with a boat operator soon moved beyond the sheet. Over more than fifty interviews, I heard about tourism, fears of relocation, and concerns about mudslides. These accounts showed the river through the livelihoods and attachments of the people I met.",
+      },
+      {
+        title: "Reflection",
+        text: "I had treated access as something I could settle on a map and an interview as something I could prepare on paper. The riverbank and the conversations revised both assumptions. Fieldwork meant adapting the plan while keeping the question clear, and listening for what I had not thought to ask.",
+      },
+      {
+        title: "An Open Question",
+        text: "How can physical evidence and local accounts inform one another without losing what each can tell us? Water samples describe aspects of the river; conversations reveal why its changes matter. I am still working on how to bring those forms of knowledge together.",
       },
     ],
   },
@@ -294,7 +328,7 @@ export const projects: Project[] = [
     period: "Mar 2025 — Present",
     role: "Founder & developer",
     visual: "learning",
-    status: "Exhibition in preparation",
+    status: "Exhibition planned for 26 September 2026",
     cover: {
       src: "/images/projects/alphadeer/logo.png",
       alt: "Alphadeer's blue deer logo.",
@@ -327,7 +361,7 @@ export const projects: Project[] = [
     sections: [
       {
         title: "Exhibition",
-        text: "Alphadeer's main exhibition is in preparation. I founded the initiative and lead a team of more than 30 members working on educational programming, a WeChat public account, and website development.",
+        text: "Alphadeer's main exhibition is planned for 26 September 2026. I founded the initiative and lead a team of more than 30 members working on educational programming, a WeChat public account, and website development.",
       },
       {
         title: "Translation and Research",
@@ -353,6 +387,14 @@ export const projects: Project[] = [
     },
     gallery: [
       {
+        src: "/images/projects/orchestra/performance-preview.jpg",
+        title: "School Performance Film",
+        alt: "Crescent Philharmonic performing together with strings, winds, piano, and a conductor.",
+        caption: "An original school performance excerpt, 1:16, with the source audio preserved.",
+        video: "/videos/orchestra/school-performance.mp4",
+        ratio: "16 / 9",
+      },
+      {
         src: "/images/projects/orchestra/concert.jpg",
         title: "Orchestra Performance",
         alt: "A live orchestra performance brings string and wind musicians together around a grand piano.",
@@ -362,7 +404,7 @@ export const projects: Project[] = [
       },
     ],
     summary:
-      "The school's first full orchestra, uniting string and wind programs with more than 100 active members.",
+      "The school's first full orchestra, bringing separated string and wind programs into one ensemble.",
     tags: ["Music", "Community service"],
     deliverables: {
       title: "Orchestra Programs",
@@ -370,7 +412,7 @@ export const projects: Project[] = [
       items: [
         {
           title: "School Orchestra",
-          detail: "String and wind programs united in a 100+ member ensemble",
+          detail: "String and wind programs united in one ensemble",
           icon: "orchestra",
         },
         {
@@ -387,8 +429,8 @@ export const projects: Project[] = [
     },
     sections: [
       {
-        title: "Organization and Leadership",
-        text: "I founded Crescent Philharmonic Orchestra after negotiating across the school's string and wind instrument programs, bringing them together into the school's first full orchestra with more than 100 active members.",
+        title: "Founding the Orchestra",
+        text: "Hearing strings and winds converge in Gershwin’s Rhapsody in Blue made me want to bring our school’s separate programs together. I founded Crescent Philharmonic in tenth grade so we could perform music that needed both. With support from the music department, we worked through different rehearsal habits to build a shared musical language.",
       },
       {
         title: "Community Performances",
@@ -397,6 +439,10 @@ export const projects: Project[] = [
       {
         title: "School Concerts",
         text: "I organized and led an orchestra concert for more than 500 audience members. The orchestra also performed at the school art festival and the school's first student-led concert.",
+      },
+      {
+        title: "Reflection",
+        text: "An elderly listener at a hospital tried to tell me what he heard in our music; I bowed and left before really listening. Since then, I have stayed after performances and taken requests, including returning with Howl’s Moving Castle. I am learning that making room for someone’s response is part of the performance itself.",
       },
     ],
   },
@@ -429,16 +475,24 @@ export const projects: Project[] = [
     },
     sections: [
       {
-        title: "Club Leadership",
-        text: "I lead more than 100 members and design weekly training sessions on mathematical modeling. I write starter code and templates to help members choose models and develop solution strategies.",
+        title: "A Place to Start",
+        text: "In our mathematical modeling community, I saw students face two extremes: a blank screen or an already completed solution to imitate. I designed starter notebooks that supplied a common foundation while leaving the central assumptions and modeling choices open.",
       },
       {
-        title: "Training and Mentorship",
-        text: "I invite expert speakers and provide individual consulting for HiMCM, IMMC, and the HKU × SHSID competition.",
+        title: "Ideas That Travel",
+        text: "I connected members whose approaches could strengthen each other, shared useful ideas in our group chat, and incorporated student-written functions into later notebooks. An idea could become the starting point for another group, then return in a different form.",
       },
       {
-        title: "Competition Results",
-        text: "Club members have earned Outstanding, Finalist, and Meritorious placements in modeling competitions with support from the training and mentoring program.",
+        title: "A Shared Memory",
+        text: "Members began searching earlier code and solutions, organizing them, and building on one another’s work. The notebooks became a record of the community’s contributions rather than a collection written by me alone.",
+      },
+      {
+        title: "Reflection",
+        text: "Leadership meant creating a foundation others could question and extend. Leaving decisions open gave members room to take ownership; keeping their contributions in future lessons helped that ownership last.",
+      },
+      {
+        title: "Competition Preparation",
+        text: "I also invite expert speakers and mentor students preparing for HiMCM, IMMC, and the HKU × SHSID competition. Members have earned Outstanding, Finalist, and Meritorious placements.",
       },
     ],
   },
@@ -480,7 +534,7 @@ export const community: {
     href: "/work/crescent-philharmonic",
     role: "Founder & leader",
     period: "2024 — Present",
-    text: "Brought string and wind programs together into the school's first full orchestra, with 100+ active members. Led community performances at Ruijin Hospital and Youyouxin Nursing Home, and organized a concert for 500+ listeners.",
+    text: "Brought string and wind programs together into the school's first full orchestra, for shared rehearsals and concerts. Led community performances at Ruijin Hospital and Youyouxin Nursing Home, and organized a concert for 500+ listeners.",
   },
   {
     title: "Mathematical Modeling Club",
@@ -504,9 +558,24 @@ export const community: {
 ];
 
 export const honors: { name: string; result: string; year: string; project?: string }[] = [
-  { name: "S.T. Yau Science Award", result: "Global Top 10", year: "2025–26", project: "density-driven-flows" },
-  { name: "Sichuan Science Fair", result: "Top 9", year: "2025–26", project: "density-driven-flows" },
-  { name: "Sea Beyond", result: "Global 1st in the Glaciers category, €5,000 sponsorship", year: "2026", project: "glacier-week" },
+  {
+    name: "S.T. Yau Science Award",
+    result: "Global Top 10",
+    year: "2025–26",
+    project: "density-driven-flows",
+  },
+  {
+    name: "Sichuan Science Fair",
+    result: "Top 9",
+    year: "2025–26",
+    project: "density-driven-flows",
+  },
+  {
+    name: "Sea Beyond",
+    result: "Global 1st in the Glaciers category, €5,000 sponsorship",
+    year: "2026",
+    project: "glacier-week",
+  },
   { name: "USACO", result: "Gold", year: "2026" },
   { name: "HiMCM", result: "Finalist, top 21 of 585", year: "2025" },
   { name: "IMMC", result: "International finalist and two-time regional finalist", year: "2025" },
