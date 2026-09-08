@@ -1,0 +1,25 @@
+.button {
+  display: none;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+:global(:root[data-theme="light"]) .button {
+  display: inline-flex;
+}
+.button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(:root[data-theme="light"]) .button {
+    display: none;
+  }
+}

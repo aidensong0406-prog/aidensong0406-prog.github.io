@@ -76,6 +76,7 @@ export default async function RootLayout({
                   const savedTheme = localStorage.getItem('data-theme');
                   const resolvedTheme = resolveTheme(savedTheme || defaultTheme);
                   root.setAttribute('data-theme', resolvedTheme);
+                  root.setAttribute('data-background-motion', localStorage.getItem('background-motion') === 'paused' ? 'paused' : 'running');
                   
                 } catch (e) {
                   document.documentElement.setAttribute('data-theme', 'dark');

@@ -19,33 +19,53 @@
   scroll-padding-top: 104px;
 }
 :root[data-theme="light"] {
-  --page-background: #e8e5dc;
-  --surface-background: #f3f0e7;
-  --portfolio-line: #42534626;
-  --portfolio-border-hover: #42534655;
-  --portfolio-navigation-bg: #f6f3eb;
-  --portfolio-action-bg: #f6f3eb;
-  --portfolio-action-text: #202822;
-  --portfolio-action-border: #798478;
-  --portfolio-action-hover: #e1e7dd;
-  --portfolio-primary-bg: #25362e;
-  --portfolio-primary-text: #f6f3eb;
-  --portfolio-primary-hover: #354b40;
+  --page-background: #e9eef2;
+  --surface-background: #f8fafb;
+  --portfolio-line: #354f6326;
+  --portfolio-border-hover: #354f6359;
+  --portfolio-navigation-bg: #f8fafbf2;
+  --portfolio-action-bg: #f8fafb;
+  --portfolio-action-text: #243642;
+  --portfolio-action-border: #728593;
+  --portfolio-action-hover: #e4ebf0;
+  --portfolio-primary-bg: #263e50;
+  --portfolio-primary-text: #f8fafb;
+  --portfolio-primary-hover: #365569;
 }
-/* A continuous, stationary field keeps the same depth on every page length. */
+/* One broad wash of cool light moves behind stable, high-contrast content. */
 :root[data-theme="light"] body {
   isolation: isolate;
 }
 :root[data-theme="light"] body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -18vmax;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse at 100% 0%, #bdcfc4 0%, #cbd7cc80 32%, transparent 66%),
-    radial-gradient(ellipse at 0% 100%, #d2c1a680 0%, transparent 58%),
-    linear-gradient(135deg, #eee9df 0%, #e6e4d9 58%, #e2e7dd 100%);
+  background: linear-gradient(
+    118deg,
+    #f7f9fb 10%,
+    #eef2f5 27%,
+    #d5e1e9 46%,
+    #e7eef3 63%,
+    #f8fafb 88%
+  );
+  transform-origin: 50% 50%;
+  animation: portfolio-light-flow 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+:root[data-theme="light"][data-background-motion="paused"] body::before {
+  animation-play-state: paused;
+}
+@keyframes portfolio-light-flow {
+  from {
+    transform: translate3d(-5%, -3%, 0) rotate(-7deg);
+    opacity: .78;
+  }
+  to {
+    transform: translate3d(6%, 4%, 0) rotate(9deg);
+    opacity: 1;
+  }
 }
 @media print {
   :root[data-theme="light"] body::before {
@@ -629,6 +649,11 @@ a.text-link:hover,
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
+  }
+  :root[data-theme="light"] body::before {
+    animation: none;
+    transform: none;
+    will-change: auto;
   }
   .portfolio-card,
   .portfolio-shell .site-button {

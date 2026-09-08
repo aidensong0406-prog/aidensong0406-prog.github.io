@@ -33,6 +33,10 @@ Personal details are in `src/resources/content.tsx`. Projects, gallery captions,
 
 Run `npm run lint`, `npm run typecheck`, and `npm run build` to validate changes. About sections support direct links and browser history. Legacy `/work` and `/climate` links open Research, with old section anchors mapped to their current destinations; climate outreach opens Impact. `/projects` opens Impact, `/music` opens Community’s music story, and `/honors` opens About’s Honors tab. `/about#community` and `/about#leadership` open Community. Redirect-only routes are excluded from the sitemap. The original résumé is served unchanged from `public/AidenSongResume0831.pdf`; all résumé links open it directly, and `/resume` redirects to it.
 
+Community separates Crescent Philharmonic, the Mathematical Modeling Club, and Kaggle into sibling panels with matching headings, their own content, and clear spacing. The orchestra video appears near the start of its panel, before the founding story on mobile.
+
+Light mode uses a pearl and slate-blue background with a slow CSS drift. The footer provides a saved pause/resume preference; reduced-motion settings disable the movement automatically. Dark mode retains its existing background.
+
 Page navigation and About tabs use view transitions with brief fades and movement. Navigation stays in place, and About panels animate between their dimensions. Reduced-motion preferences disable the animations; browsers without native view transitions retain standard navigation and a CSS entrance fallback.
 
 Honors pairs the lock-exchange photograph with research awards and uses compact competition cards with expandable full results. Education uses institution marks and expandable coursework. The marks are unmodified official assets from USACO, COMAP, IMMC, BPhO, AAPT, the John Locke Institute, MAA, SHSID, Carnegie Mellon, and Stanford, displayed in a consistent monochrome treatment.
