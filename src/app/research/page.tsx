@@ -17,67 +17,72 @@ export default function Research() {
     <main id="main-content" className={`portfolio-shell ${styles.page}`}>
       <header className={styles.heading} id="question">
         <h1>Research</h1>
-        <p>How much can we understand about moving water from the traces it leaves?</p>
+        <div className={styles.copy}>
+          <p>How much can we understand about moving water from the traces it leaves?</p>
+          <p>My interest began with patterned Yangtze stones and the water that shaped them.</p>
+        </div>
       </header>
 
-      <section className={styles.origin} aria-labelledby="origin-title">
-        <figure className={styles.figure}>
-          <div className={styles.tankImage}>
-            <ProjectArtwork
-              visual={null}
-              media={getProject("density-driven-flows").cover}
-              priority
-              sizes="(max-width: 760px) 94vw, 550px"
-            />
-          </div>
-          <figcaption>A lock-exchange experiment makes a density current visible.</figcaption>
-        </figure>
-        <div className={styles.copy}>
-          <h2 id="origin-title">The Question</h2>
-          <p>
-            Collecting Yangtze stones led me to build a lock-exchange tank and ask what physics could
-            reveal about currents beyond the motion I could see.
-          </p>
-          <Link className={styles.textLink} href="/work/density-driven-flows">
-            Explore the experiment <ActionArrow />
-          </Link>
+      <section className={styles.background} aria-labelledby="background-title">
+        <div>
+          <h2 id="background-title">Ocean Circulation</h2>
+          <p className={styles.period}>2023 — 2024</p>
         </div>
+        <p>
+          I studied Atlantic Meridional Overturning Circulation through oceanographic records and
+          physical modeling, investigating weakening circulation and freshwater input.
+        </p>
       </section>
 
       <section id="research-fieldwork" className={styles.section} aria-labelledby="models-title">
         <h2 id="models-title">Computational Research</h2>
         <div className={styles.models}>
-          <article className={styles.copy}>
-            <div>
-              <h3>PINN-LOCK</h3>
-              <p className={styles.period}>April 2024 — February 2026</p>
+          <article className={styles.feature} aria-labelledby="pinn-title">
+            <figure className={styles.figure}>
+              <div className={styles.tankImage}>
+                <ProjectArtwork
+                  visual={null}
+                  media={getProject("density-driven-flows").cover}
+                  priority
+                  sizes="(max-width: 760px) 94vw, 520px"
+                />
+              </div>
+              <figcaption>A lock-exchange tank makes a density current visible.</figcaption>
+            </figure>
+            <div className={styles.copy}>
+              <div>
+                <h3 id="pinn-title">PINN-LOCK: Reconstructing Density Currents</h3>
+                <p className={styles.period}>April 2024 — February 2026</p>
+              </div>
+              <p>
+                I developed physics-informed neural networks to recover density-driven flows from
+                sparse observations, comparing their reconstructions with simulated reference fields.
+              </p>
+              <Link className={styles.textLink} href="/work/density-driven-flows">
+                Method and results <ActionArrow />
+              </Link>
+              <a className={styles.document} href="/papers/pinn-lock-research-manuscript.pdf">
+                <span>
+                  Research Manuscript<span>Unpublished, PDF</span>
+                </span>
+                <ActionArrow />
+              </a>
             </div>
-            <p>
-              I developed physics-informed neural networks to reconstruct density-driven flows from
-              sparse observations, testing their predictions against simulated reference fields.
-            </p>
-            <Link className={styles.textLink} href="/work/density-driven-flows">
-              Method and results <ActionArrow />
-            </Link>
-            <a className={styles.document} href="/papers/pinn-lock-research-manuscript.pdf">
-              <span>
-                Research Manuscript<span>Unpublished, PDF</span>
-              </span>
-              <ActionArrow />
-            </a>
           </article>
-          <article className={styles.copy}>
+          <article className={styles.researchEntry} aria-labelledby="storm-title">
             <div>
-              <h3>Storm-Surge Prediction</h3>
+              <h3 id="storm-title">Storm-Surge Prediction</h3>
               <p className={styles.period}>June — August 2026, ECNU</p>
             </div>
-            <p>
-              At ECNU, I used MeshGraphNets to forecast storm-driven coastal water levels, extending
-              my work from reconstructing flows to predicting their evolution.
-            </p>
-            <Link className={styles.textLink} href="/work/computational-oceanography">
-              Research details <ActionArrow />
-            </Link>
+            <div className={styles.copy}>
+              <p>
+                At ECNU, I used MeshGraphNets to forecast coastal water levels, extending my work
+                from reconstructing motion to predicting change.
+              </p>
+              <Link className={styles.textLink} href="/work/computational-oceanography">
+                Forecasting research <ActionArrow />
+              </Link>
+            </div>
           </article>
         </div>
       </section>
@@ -90,6 +95,15 @@ export default function Research() {
         <div className={styles.copy}>
           <h2 id="field-title">Yangtze Fieldwork</h2>
           <p className={styles.period}>June — July 2026</p>
+          <p>
+            Sampling and interviews challenged my assumptions about access and local lives. I learned
+            to adapt the plan and listen beyond my questionnaire.
+          </p>
+          <Link className={styles.textLink} href="/work/yangtze-expedition">
+            Field notes and reflections <ActionArrow />
+          </Link>
+        </div>
+        <div className={styles.fieldEvidence}>
           <dl className={styles.fieldFacts}>
             <div>
               <dt>Cities visited</dt>
@@ -105,16 +119,21 @@ export default function Research() {
             </div>
           </dl>
         </div>
-        <div className={styles.copy}>
-          <p>
-            Sampling and interviews along the Yangtze taught me to revise my plans when difficult
-            terrain and local stories challenged my assumptions.
-          </p>
-          <Link className={styles.textLink} href="/work/yangtze-expedition">
-            Field notes and reflections <ActionArrow />
-          </Link>
-        </div>
       </section>
+
+      <details className={styles.details}>
+        <summary>Earlier Laboratory Research</summary>
+        <article className={styles.earlierResearch}>
+          <div>
+            <h3>Zebrafish Caudal-Fin Regeneration</h3>
+            <p className={styles.period}>2023 — 2024</p>
+          </div>
+          <p>
+            Through a Chinese Academy of Sciences opportunity, I investigated temperature-dependent
+            fin regeneration.
+          </p>
+        </article>
+      </details>
 
       <section
         id="reflection"
@@ -125,35 +144,13 @@ export default function Research() {
         <div className={styles.copy}>
           <p>
             Models reveal patterns; fieldwork taught me when to measure again, revise an assumption,
-            or listen to a question I had not anticipated.
+            or listen. Public education asks how to make that curiosity accessible to others.
           </p>
-          <Link className={styles.textLink} href="/impact">
-            From research to public impact <ActionArrow />
+          <Link className={styles.textLink} href="/work/glacier-week">
+            Public engagement: Glacier Week <ActionArrow />
           </Link>
         </div>
       </section>
-
-      <details className={styles.details}>
-        <summary>Earlier Research</summary>
-        <div className={styles.models}>
-          <article className={styles.copy}>
-            <h3>Atlantic Meridional Overturning Circulation</h3>
-            <p className={styles.period}>2023 — 2024</p>
-            <p>
-              I used oceanographic records and physical modeling to investigate weakening
-              circulation and freshwater input.
-            </p>
-          </article>
-          <article className={styles.copy}>
-            <h3>Zebrafish Caudal-Fin Regeneration</h3>
-            <p className={styles.period}>2023 — 2024</p>
-            <p>
-              Through a Chinese Academy of Sciences opportunity, I investigated
-              temperature-dependent fin regeneration.
-            </p>
-          </article>
-        </div>
-      </details>
     </main>
   );
 }

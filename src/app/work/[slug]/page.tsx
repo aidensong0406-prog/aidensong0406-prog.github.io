@@ -23,6 +23,7 @@ import {
 } from "react-icons/fi";
 import styles from "./project.module.css";
 import { ActionArrow } from "@/components/ActionArrow";
+import { PinnLockProject } from "@/components/PinnLockProject";
 
 // These highlights condense the existing résumé-derived project descriptions.
 // Use qualitative outputs where the résumé provides no numerical results.
@@ -132,6 +133,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const project = projects.find((project) => project.slug === slug);
   const parentSection = getProjectSection(slug);
   if (!project || !parentSection) notFound();
+
+  if (slug === "density-driven-flows") return <PinnLockProject />;
 
   const related = projects
     .filter(

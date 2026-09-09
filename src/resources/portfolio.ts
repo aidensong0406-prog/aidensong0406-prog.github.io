@@ -55,7 +55,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "density-driven-flows",
-    title: "Density-Driven Flow Simulation",
+    title: "PINN-LOCK: Reconstructing Density Currents",
     documents: [
       {
         title: "PINN-LOCK Research Manuscript",
