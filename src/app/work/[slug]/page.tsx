@@ -24,6 +24,7 @@ import {
 import styles from "./project.module.css";
 import { ActionArrow } from "@/components/ActionArrow";
 import { PinnLockProject } from "@/components/PinnLockProject";
+import { YangtzeProject } from "@/components/YangtzeProject";
 
 // These highlights condense the existing résumé-derived project descriptions.
 // Use qualitative outputs where the résumé provides no numerical results.
@@ -135,6 +136,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   if (!project || !parentSection) notFound();
 
   if (slug === "density-driven-flows") return <PinnLockProject />;
+  if (slug === "yangtze-expedition") return <YangtzeProject />;
 
   const related = projects
     .filter(

@@ -1,0 +1,301 @@
+.atlas {
+  --map-water: #dbe8ed;
+  --map-land: #e5eeea;
+  --map-boundary: #9ab1b04f;
+  --map-river: #487e8c;
+  --map-tributary: #86a9b2;
+  --map-accent: #1b596b;
+  --map-label: #f0f6f3eb;
+  --map-ink: #24414b;
+  --map-soft-ink: #4e6870;
+  --map-halo: #f6faf4;
+  border: var(--portfolio-panel-border);
+  border-radius: 20px;
+  background: var(--surface-background);
+  backdrop-filter: var(--portfolio-panel-blur);
+  -webkit-backdrop-filter: var(--portfolio-panel-blur);
+  box-shadow: var(--portfolio-panel-shadow);
+  overflow: hidden;
+}
+:global([data-theme="dark"]) .atlas {
+  --map-water: #162a35;
+  --map-land: #21343a;
+  --map-boundary: #7a9ba32b;
+  --map-river: #82b0bb;
+  --map-tributary: #466e7a;
+  --map-accent: #a6d9d8;
+  --map-label: #263e47f5;
+  --map-ink: #e0eeee;
+  --map-soft-ink: #b2c9ce;
+  --map-halo: #162a35;
+}
+.atlasHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+.atlasHeader p {
+  margin-top: 3px;
+  font-size: 14px;
+}
+.atlasSubtitle {
+  font-size: 13px;
+}
+.atlasBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 328px;
+}
+.journal {
+  min-width: 0;
+  border-left: 1px solid var(--portfolio-line);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.kicker {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.regionHeading h3 {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.regionHeading h3 > span {
+  font-size: 16px;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.regionHeading p {
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.regionList,
+.stopList {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.regionList li + li {
+  border-top: 1px solid var(--portfolio-line);
+}
+.regionList button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 13px;
+  text-align: left;
+  min-height: 65px;
+  padding: 10px 0;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  --action-arrow-size: 16px;
+}
+.regionList button > span:nth-child(2) {
+  flex: 1;
+}
+.regionList strong,
+.stopList strong {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+}
+.regionList button > span:nth-child(2) > span,
+.stopList button > span:nth-child(2) > span {
+  display: block;
+  font-size: 12px;
+  margin-top: 1px;
+}
+.regionList button:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.stopNumber {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+.journalFootnote {
+  padding-top: 18px;
+  margin-top: auto !important;
+  font-size: 12px;
+  border-top: 1px solid var(--portfolio-line);
+}
+.overviewButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  min-height: 40px;
+  padding: 0;
+  margin: -10px 0 14px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 13px !important;
+  --action-arrow-size: 14px;
+}
+.overviewButton:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.stopList {
+  display: grid;
+  gap: 6px;
+}
+.stopList button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 59px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.stopList button:hover {
+  border-color: var(--portfolio-line);
+}
+.stopList button[aria-pressed="true"] {
+  border-color: var(--portfolio-border-hover);
+  background: color-mix(in srgb, var(--map-water) 55%, transparent);
+  box-shadow: inset 3px 0 0 var(--map-river);
+}
+.stopNote {
+  padding-top: 18px;
+  margin-top: 20px;
+  border-top: 1px solid var(--portfolio-line);
+}
+.stopNote .kicker {
+  margin-bottom: 6px;
+}
+.stopNote p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.stopNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 22px;
+  margin-top: auto;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.stopNavigation > span > span {
+  font-size: 12px;
+  margin-left: 4px;
+}
+.stopNavigation > div {
+  display: flex;
+  gap: 7px;
+}
+.stopNavigation button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  --action-arrow-size: 17px;
+}
+.stopNavigation button:hover {
+  background: var(--surface-background);
+  border-color: var(--portfolio-border-hover);
+}
+.stopNavigation button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+@media (max-width: 1000px) {
+  .atlasBody {
+    grid-template-columns: minmax(0, 1fr) 292px;
+  }
+  .journal {
+    padding: 20px;
+  }
+}
+@media (max-width: 760px) {
+  .atlasHeader {
+    padding: 20px;
+  }
+  .atlasSubtitle {
+    display: none;
+  }
+  .atlasBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .journal {
+    border-left: 0;
+    border-top: 1px solid var(--portfolio-line);
+    padding: 22px;
+  }
+  .regionList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+  .regionList li + li {
+    border-top: 0;
+  }
+  .regionList li:nth-child(n + 3) {
+    border-top: 1px solid var(--portfolio-line);
+  }
+  .regionList button {
+    gap: 8px;
+    min-height: 70px;
+  }
+  .regionList button > span:last-child {
+    display: none;
+  }
+  .journalFootnote {
+    margin-top: 16px !important;
+  }
+  .stopList {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .stopList button {
+    height: 100%;
+    padding: 9px;
+    gap: 8px;
+  }
+  .stopList strong {
+    font-size: 13px;
+  }
+  .stopList button > span:nth-child(2) > span {
+    font-size: 11px;
+  }
+}
+@media (max-width: 370px) {
+  .regionList {
+    column-gap: 16px;
+  }
+  .regionList strong {
+    font-size: 13px;
+  }
+  .regionList button > span:nth-child(2) > span {
+    font-size: 11px;
+  }
+  .stopList {
+    grid-template-columns: 1fr;
+  }
+}
