@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import type { Map as LibreMap, Marker } from "maplibre-gl";
 import { FiMaximize2, FiMinus, FiPlus } from "react-icons/fi";
 import { expeditionRegions } from "@/resources/yangtze-expedition";
+import { fetchMapTile, yangtzeMapStyle, type MapProvider } from "@/resources/yangtze-map-style";
 import "maplibre-gl/dist/maplibre-gl.css";
 import styles from "./YangtzeWebMap.module.css";
 
@@ -12,8 +13,7 @@ const BOUNDS: [[number, number], [number, number]] = [
   [99.6, 26.8],
   [114.85, 31.8],
 ];
-const LIGHT_STYLE = "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
-const DARK_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
+let mapInstance = 0;
 const OFFSETS: [number, number][] = [
   [0, -12],
   [-30, 46],
@@ -52,6 +52,7 @@ export function YangtzeWebMap({
   const [status, setStatus] = useState<"loading" | "ready" | "unavailable">("loading");
   const [attempt, setAttempt] = useState(0);
   const [zoom, setZoom] = useState(4);
+  const [providerName, setProviderName] = useState<MapProvider>("esri");
   const regionRef = useRef(activeRegionId);
   regionRef.current = activeRegionId;
 
@@ -61,13 +62,22 @@ export function YangtzeWebMap({
     let map: LibreMap | undefined;
     let observer: MutationObserver | undefined;
     let resize: ResizeObserver | undefined;
+    let removeProtocol: (() => void) | undefined;
+    const protocol = `yangtze-tiles-${++mapInstance}`;
+    let generation = 0;
+    let provider: MapProvider = "esri";
+    let failed = false;
+    let sourceIds: string[] = [];
+    const loadedSources = new Set<string>();
     const markers: Marker[] = [];
     let timeout: number;
+    let recoverMap = () => setStatus("unavailable");
+    setProviderName("esri");
     function beginLoading() {
       window.clearTimeout(timeout);
       setStatus("loading");
       timeout = window.setTimeout(() => {
-        if (!disposed) setStatus((value) => (value === "loading" ? "unavailable" : value));
+        if (!disposed) recoverMap();
       }, 20000);
     }
     beginLoading();
@@ -77,10 +87,16 @@ export function YangtzeWebMap({
         const maplibre = await import("maplibre-gl");
         if (disposed || !container.current) return;
         maplibre.setWorkerUrl("/vendor/maplibre/maplibre-gl-worker.mjs");
+        maplibre.addProtocol(protocol, async (request, controller) => ({
+          data: await fetchMapTile(request.url, controller.signal),
+        }));
+        removeProtocol = () => maplibre.removeProtocol(protocol);
         const isDark = () => document.documentElement.dataset.theme === "dark";
+        const initialStyle = yangtzeMapStyle(isDark(), provider, protocol, generation);
+        sourceIds = Object.keys(initialStyle.sources);
         map = new maplibre.Map({
           container: container.current,
-          style: isDark() ? DARK_STYLE : LIGHT_STYLE,
+          style: initialStyle,
           center: [107, 29.5],
           zoom: 4,
           minZoom: 3,
@@ -97,6 +113,27 @@ export function YangtzeWebMap({
         });
         const currentMap = map;
         mapRef.current = currentMap;
+        function changeStyle() {
+          generation++;
+          failed = false;
+          loadedSources.clear();
+          const style = yangtzeMapStyle(isDark(), provider, protocol, generation);
+          sourceIds = Object.keys(style.sources);
+          beginLoading();
+          currentMap.setStyle(style, { diff: false });
+        }
+        recoverMap = () => {
+          if (disposed) return;
+          if (provider === "esri") {
+            provider = "osm";
+            setProviderName(provider);
+            changeStyle();
+          } else {
+            failed = true;
+            window.clearTimeout(timeout);
+            setStatus("unavailable");
+          }
+        };
         currentMap.touchZoomRotate.disableRotation();
         currentMap.addControl(new maplibre.AttributionControl({ compact: true }), "bottom-right");
         currentMap
@@ -176,26 +213,49 @@ export function YangtzeWebMap({
               duration: 0,
             });
         });
+        currentMap.on("sourcedata", (event) => {
+          if (sourceIds.includes(event.sourceId) && event.tile?.state === "loaded") {
+            loadedSources.add(event.sourceId);
+          }
+        });
         currentMap.on("idle", () => {
           if (disposed) return;
-          // A settled map can include failed tiles. Require actual basemap features,
-          // so a network outage cannot be mistaken for a successfully loaded map.
-          const hasBasemap = currentMap
-            .queryRenderedFeatures()
-            .some((feature) => feature.source === "carto");
-          window.clearTimeout(timeout);
-          setStatus(hasBasemap ? "ready" : "unavailable");
+          // Raster tiles must actually decode, and no tile in this style may have
+          // failed. A single visible feature is not proof that the whole map loaded.
+          if (
+            !failed &&
+            sourceIds.every(
+              (source) => loadedSources.has(source) && currentMap.isSourceLoaded(source),
+            ) &&
+            currentMap.areTilesLoaded()
+          ) {
+            window.clearTimeout(timeout);
+            setStatus("ready");
+          }
         });
         currentMap.on("zoomend", () => setZoom(currentMap.getZoom()));
-        // Errors stay inside the map. The ordered itinerary is independent of the tile service.
-        currentMap.on("error", () => {});
+        currentMap.on("error", (event) => {
+          // MapLibre attaches sourceId at runtime when a source bubbles an error.
+          const sourceId = (event as typeof event & { sourceId?: string }).sourceId;
+          if (
+            disposed ||
+            failed ||
+            (sourceId && !sourceIds.includes(sourceId) && sourceId !== "yangtze-river")
+          )
+            return;
+          failed = true;
+          setStatus("loading");
+          const failedGeneration = generation;
+          queueMicrotask(() => {
+            if (!disposed && generation === failedGeneration) recoverMap();
+          });
+        });
         let theme = document.documentElement.dataset.theme;
         observer = new MutationObserver(() => {
           const nextTheme = document.documentElement.dataset.theme;
           if (nextTheme === theme) return;
           theme = nextTheme;
-          beginLoading();
-          currentMap.setStyle(isDark() ? DARK_STYLE : LIGHT_STYLE);
+          changeStyle();
         });
         observer.observe(document.documentElement, {
           attributes: true,
@@ -221,6 +281,7 @@ export function YangtzeWebMap({
       resize?.disconnect();
       for (const marker of markers) marker.remove();
       map?.remove();
+      removeProtocol?.();
       mapRef.current = null;
     };
   }, [attempt]);
@@ -242,7 +303,7 @@ export function YangtzeWebMap({
   }, [activeRegionId]);
 
   return (
-    <div className={styles.column}>
+    <div className={styles.column} data-map-status={status} data-map-provider={providerName}>
       <div className={styles.toolbar}>
         <span>
           {expeditionRegions.find((region) => region.id === activeRegionId)?.name ??
