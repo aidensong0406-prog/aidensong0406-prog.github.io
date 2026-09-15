@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from "react";
 import { expeditionRegions, expeditionStops } from "@/resources/yangtze-expedition";
 import { ActionArrow } from "./ActionArrow";
-import { YangtzeWebMap } from "./YangtzeWebMap";
+import { YangtzeRouteMap } from "./YangtzeRouteMap";
 import styles from "./YangtzeMap.module.css";
 
 export function YangtzeMap() {
@@ -38,7 +38,7 @@ export function YangtzeMap() {
         <span className={styles.atlasSubtitle}>An interactive field atlas</span>
       </div>
       <div className={styles.atlasBody}>
-        <YangtzeWebMap
+        <YangtzeRouteMap
           activeRegionId={activeRegion?.id ?? null}
           detailsId={`${id}-details`}
           onSelectRegion={(regionId) => {

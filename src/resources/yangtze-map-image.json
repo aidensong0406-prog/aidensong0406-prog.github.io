@@ -1,0 +1,20 @@
+{
+  "image": {
+    "src": "/images/projects/yangtze/route-map.webp",
+    "width": 2200,
+    "height": 1540
+  },
+  "extent": {
+    "xmin": 10920442.046820134,
+    "ymin": 2754819.8910183064,
+    "xmax": 12913060.932019733,
+    "ymax": 4149653.110658026
+  },
+  "spatialReference": 3857,
+  "source": {
+    "name": "Esri World Topographic Map",
+    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+    "attribution": "Sources: Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), \u00a9 OpenStreetMap contributors, and the GIS User Community. River: Natural Earth (public domain)."
+  },
+  "preview": "data:image/webp;base64,UklGRkYDAABXRUJQVlA4IDoDAABQFACdASqgAHAAPuFwrVIopqkro7YLWXAcCWdrUjANSkkpfRW/WU4K0rWPPJSqhcPym+hbFaN6olljmGmBEWXMAwq3qi94hE9hC4h2LSvGfjGtPEkZzkHF+/dXz77YKOA0mH7vePO/+o1C4488yAuP+pe5kz08OAcsWM/cIku1rFDlOKBcDbKHGKcAQZbKoUTzZzVn17F0cU6lk9ldQQEEZgvCRrpMKmn9XIAA/vMgknsVrFFb9slPjYlpUPadlNm1j4o8eJG74Ps4Xgx1QeRinlV0aTbRX64V4Ym0WguKfWFJMCW197jPgSabx5/d6PcyLcXOXHhCQDvqXfvpKE7nlywx1/iy3bos9dihoB4lLFtdOujqX/kuBU+QlFSnTMzzLMi3PgR0/ewS4LELz2w/a7DOrxqMAmBvxEwv02viY6Uk3IVeutg3Ak0CzQn9WAQLk7UX4Tg65icePAAHaTw/2TwnhxzLkr+/DC8uUvGRN/w26bJ1dXT+c7p6kSXcrrMRYSjMy5NPykndzRyjjn9ME6voxC2CsC8oxXvLdYguh/lk8gyUyp52OD1fkxXarN23rCpwniD0vLq+W7qEmv5VBpQfoiwI+t7IhajkfKy5oAO9M8C6BIPypVoZl+R1J/wnO86Rr0EDQ48PKvguQu9ywUTXjcsCM0q/kxtLA2bJlobrBUFmbKGaLCW1jfsIz7PF8pvDYNRE4GRqkSadLFebhY1VIc9+zt3fCJXEJilYFP46lKdL24CHSNY337eJ6Go6SeyetIK5+KIEFo0cfFlPsEjIEb8MCKKUq5OPsJ2gx9ZJ3ouAN2LQZbkVwK6JwDgkKJxatf9rhpQdXNggs91gPE362mbgNp2nHuVhzTq/V83ESj4YE9Ho5Gsgvi8q493sEsgaOKN/FxMIQKDOscoHGxKPOzSXfDmLVr/2x3oL8mGZOKMS97WT/kzWjlYRy25yut2Ina7BkmCPnS1QM1FxKhWj1KHcTwWEe8NmEf3U+R45+CoeJIQ8/0njQbzuju7ORfKVN6g6/s5L4BS/Wf+2tzolJg7xsAR5XtMPIGHNtAusW0OPKB5OVvd0iYOOIsll0dwRoIIvvQAA"
+}

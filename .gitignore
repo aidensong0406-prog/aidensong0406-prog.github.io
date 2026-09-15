@@ -34,5 +34,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-# Unmodified MapLibre worker assets copied from the locked dependency at build time.
-/public/vendor/maplibre/
