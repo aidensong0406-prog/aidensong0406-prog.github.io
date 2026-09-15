@@ -7,7 +7,7 @@ import { expeditionRegions } from "@/resources/yangtze-expedition";
 import mapImage from "@/resources/yangtze-map-image.json";
 import styles from "./YangtzeRouteMap.module.css";
 
-const MAX_ZOOM = 2;
+const MAX_ZOOM = 3;
 const RADIUS = 6378137;
 
 // The coordinates use the exact Web Mercator extent returned with the map export.
@@ -131,7 +131,18 @@ export function YangtzeRouteMap({
   }
 
   function keyDown(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "Escape") {
+    if (event.key === "+" || event.key === "=") {
+      event.preventDefault();
+      changeZoom(zoom + 0.5);
+      return;
+    }
+    if (event.key === "-") {
+      event.preventDefault();
+      changeZoom(zoom - 0.5);
+      return;
+    }
+    if (event.key === "Escape" || event.key === "0") {
+      event.preventDefault();
       fullRoute();
       return;
     }
@@ -156,13 +167,41 @@ export function YangtzeRouteMap({
       onKeyDown={keyDown}
     >
       <div className={styles.toolbar}>
-        <span>{active?.name ?? "Explore the river"}</span>
-        <button type="button" onClick={fullRoute}>
-          <FiMaximize2 aria-hidden="true" /> Full route
-        </button>
+        <div className={styles.toolbarHeading}>
+          <span>{active?.name ?? "Explore the river"}</span>
+          <button className={styles.resetButton} type="button" onClick={fullRoute}>
+            <FiMaximize2 aria-hidden="true" /> Full route
+          </button>
+        </div>
+        <fieldset className={styles.zoomControls} aria-label="Map zoom">
+          <button
+            type="button"
+            onClick={() => changeZoom(zoom - 0.5)}
+            disabled={zoom === 1}
+            aria-label="Zoom out"
+            aria-controls={`${detailsId}-map`}
+            aria-describedby={`${detailsId}-zoom-help`}
+          >
+            <FiMinus aria-hidden="true" /> Zoom out
+          </button>
+          <output className={styles.zoomLevel} aria-label="Map magnification" aria-live="polite">
+            {Math.round(zoom * 100)}%
+          </output>
+          <button
+            type="button"
+            onClick={() => changeZoom(zoom + 0.5)}
+            disabled={zoom === MAX_ZOOM}
+            aria-label="Zoom in"
+            aria-controls={`${detailsId}-map`}
+            aria-describedby={`${detailsId}-zoom-help`}
+          >
+            <FiPlus aria-hidden="true" /> Zoom in
+          </button>
+        </fieldset>
       </div>
       <div
         ref={viewport}
+        id={`${detailsId}-map`}
         className={`${styles.viewport} ${zoom > 1 ? styles.zoomed : ""} ${dragging ? styles.dragging : ""}`}
         style={{ aspectRatio: `${mapImage.image.width} / ${mapImage.image.height}` }}
         onPointerDown={pointerDown}
@@ -231,29 +270,10 @@ export function YangtzeRouteMap({
             );
           })}
         </fieldset>
-        <fieldset className={styles.zoomControls} aria-label="Map zoom">
-          <button
-            type="button"
-            onClick={() => changeZoom(zoom + 0.5)}
-            disabled={zoom === MAX_ZOOM}
-            aria-label="Zoom in"
-            aria-describedby={`${detailsId}-zoom-help`}
-          >
-            <FiPlus aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            onClick={() => changeZoom(zoom - 0.5)}
-            disabled={zoom === 1}
-            aria-label="Zoom out"
-          >
-            <FiMinus aria-hidden="true" />
-          </button>
-        </fieldset>
         {zoom > 1 && <span className={styles.dragHint}>Drag to explore</span>}
         <p id={`${detailsId}-zoom-help`} className={styles.srOnly}>
-          After zooming, drag the map or use the arrow keys while a map control is focused. Press
-          Escape or Full route to reset.
+          Zoom from 100 to 300 percent. After zooming, drag the map or use the arrow keys while a map
+          control is focused. Use plus and minus to zoom, or Escape, zero, or Full route to reset.
         </p>
       </div>
       <div className={styles.caption}>
